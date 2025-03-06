@@ -1,4 +1,4 @@
-# Mötesprotokoll (06.03.2025)
+# Mötesprotokoll (2025-03-06)
 
 ## Närvarande
 
@@ -9,19 +9,6 @@
 - Adam
 
 ## Protokoll
-
-Idag møttes vi kl 0930 som avtalt dagen før. Vi begynte med å se over litt wireframes som hadde blitt laget i forkant av Oskar og Adam, etterfulgt av at vi sammen bestemte oss for hvilke elementer vi ville gå videre med og ikke. Vi kom frem til en felles enighet i hvordan vi vil at designet skal se ut.
-Sidene vi har lagt til i figmaskissen er: 
-- Landingside
-- Innloggingside
-- Se hvor bilen er i realtid
-- Om oss
-- Adminsida med overblikk over ordre
-- Accountside for att enda innlogg, profilbild mm.
-- Sparade ordrar/favoriter
-- Ordrehistorik og kvitton
-- Betalingside
-
 Idag möttes vi kl. 09:30 som avtalat dagen innan. Vi började med att gå igenom några wireframes som hade skapats i förväg av Oskar och Adam, följt av att vi tillsammans bestämde vilka element vi ville gå vidare med och vilka vi skulle ta bort. Vi kom fram till en gemensam överenskommelse om hur vi vill att designen ska se ut.
 Sidorna vi har lagt till i Figma-skissen är:
 - Landningssida
