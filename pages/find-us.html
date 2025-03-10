@@ -8,8 +8,10 @@
       content="Rykande nudlar och heta dim sum - Yum Yum Gimmie Sum!"
     />
     <title>Hitta oss</title>
-    <link rel="stylesheet" href="styling/base_styling.css" />
+    <!-- <link rel="stylesheet" href="../styling/base_styling.css" /> -->
+    <link rel="stylesheet" href="../styling/find_us_styling.css">
     <script type="module" src="main.js"></script>
+    <!-- <script type="module" src="modules/geoLocation.js"></script> -->
   </head>
   <body>
     <header class="header">
@@ -19,6 +21,20 @@
       </div>
     </header>
 
-    <main></main>
+<main>
+  <section class="find-us-container">
+  <div id="map-demo">
+    <img class="map-place-holder" src="../styling/bilder/location-placeholder.png" alt="map-placeholder">
+  </div>
+  <h1>Idag befinner vi oss här</h1>
+    <ul class="schedule">
+        <li class="current-location-item">2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00</li>
+        <li class="upcoming-location-item">2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00</li>
+        <li class="upcoming-location-item">2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00</li>
+        <li class="upcoming-location-item">2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00</li>
+        <li class="upcoming-location-item">2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00</li>
+    </ul>
+  </section>
+</main>
   </body>
 </html>
