@@ -71,7 +71,8 @@ body {
 
 .hamburger-menu__item {
   width: 100%;
-  border: 1px solid var(--TEXT-LIGHT);
+  border: solid var(--TEXT-LIGHT);
+  border-width: 1px 1px 0 1px;
   display: grid;
   align-content: center;
 }
@@ -95,6 +96,7 @@ body {
 
 .hamburger-menu__item:last-of-type,
 .hamburger-menu__link:last-of-type {
+  border-bottom-width: 1px;
   border-radius: 0 0 0 10px;
 }
 

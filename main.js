@@ -1,3 +1,5 @@
+import { renderNav } from "./modules/render_page/navBar.js";
+
 if (
   window.location.pathname === "/" ||
   window.location.pathname === "/index.html"
@@ -26,3 +28,5 @@ if (
   // Kvitto
   console.log("receipt");
 }
+
+renderNav(window.location.pathname);
