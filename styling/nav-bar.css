@@ -8,11 +8,6 @@
   --DROP-SHADOW: 0 0 16px;
 }
 
-body {
-  min-height: 200vh;
-  background-color: var(--BACKDROP-COLOUR);
-}
-
 .header {
   background-color: var(--BG-DARK-TRANSP);
   font-family: "Fira Sans", sans-serif;
