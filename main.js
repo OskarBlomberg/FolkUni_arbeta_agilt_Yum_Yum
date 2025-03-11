@@ -6,10 +6,9 @@ if (
 ) {
   // index
   console.log("index");
+  goToFindUs();
+  goToMenu();
 } else if (window.location.pathname === "/pages/about-us.html") {
-  
-goToFindUs();
-goToMenu();
   // Om oss
   console.log("about us");
 } else if (window.location.pathname === "/pages/admin.html") {
@@ -34,21 +33,19 @@ goToMenu();
 
 renderNav(window.location.pathname);
 
-
 function goToFindUs() {
-  const findUsRef = document.querySelector('.findUsButton')
-  findUsRef.addEventListener('click', () => {
+  const findUsRef = document.querySelector(".findUsButton");
+  findUsRef.addEventListener("click", () => {
     console.log("Find Us");
-    
+
     // window.location.href = "/pages/find-us.html"
   });
 }
 function goToMenu() {
-  const findUsRef = document.querySelector('.menuButton')
-  findUsRef.addEventListener('click', () => {
+  const findUsRef = document.querySelector(".menuButton");
+  findUsRef.addEventListener("click", () => {
     console.log("Meny");
 
     // window.location.href = "/pages/our-menu.html"
   });
 }
-
