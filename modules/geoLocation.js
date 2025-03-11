@@ -29,3 +29,5 @@ function showError(error) {
       break;
   }
 }
+
+// Vi behöver en getLocation() som fångar upp longitud och latitud så vi kan ombandla vår position till googles api (q-parameter)
