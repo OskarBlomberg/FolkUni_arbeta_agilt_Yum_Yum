@@ -19,11 +19,11 @@
     border: black;
 }
 
-h1 {
+.h1-white {
     color: #F4F3F1;
 }
 
-ul {
+.schedule {
     width: 50%;
     height: auto;
     padding: 0;
@@ -34,16 +34,16 @@ ul {
     padding: 5%;    
 }
 
-ul :nth-child(even) {
+.schedule :nth-child(even) {
     background-color: rgba(241, 240, 236, 0.17);
     color: #F4F3F1;
 }
 
-ul :nth-child(odd) {
+.schedule :nth-child(odd) {
     background-color: #F4F3F1;
 }
 
-li {
+.current__location-item, .upcoming__location-item {
     margin: 2%;
     padding: 1%;
     border-radius: 4px;
