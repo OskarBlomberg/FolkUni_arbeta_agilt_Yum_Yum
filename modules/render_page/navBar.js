@@ -2,8 +2,8 @@ const hamburger = document.getElementById("nav-list");
 const items = [
   { path: "/index.html", altPath: "/", text: "Startsida" },
   { path: "/pages/our-menu.html", text: "Vår meny" },
-  { path: "/pages/find.us.html", text: "Hitta oss" },
-  { path: "/pages/about.us.html", text: "Om oss" },
+  { path: "/pages/find-us.html", text: "Hitta oss" },
+  { path: "/pages/about-us.html", text: "Om oss" },
 ];
 
 export function renderNav(currentPage) {
