@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html lang="sv">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Rykande nudlar och heta dim sum - Yum Yum Gimmie Sum!"
-    />
-    <title>Yum Yum Gimmie Sum</title>
-    <link rel="stylesheet" href="styling/base_styling.css" />
-    <script type="module" src="main.js"></script>
-  </head>
-  <body>
-    <header class="header">
-      <figure class="icon-container"></figure>
-      <div class="hamburger-menu" tabindex="0">
-        <nav class="hamburger-menu__list"></nav>
-      </div>
-    </header>
 
-    <main></main>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rykande nudlar och heta dim sum - Yum Yum Gimmie Sum!" />
+  <title>Yum Yum Gimmie Sum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styling/base_styling.css" />
+  <link rel="stylesheet" href="styling/landingpage.css">
+  <script type="module" src="main.js"></script>
+</head>
+
+<body>
+  <header class="header">
+    <figure class="icon-container"></figure>
+    <div class="hamburger-menu" tabindex="0">
+      <nav class="hamburger-menu__list"></nav>
+    </div>
+  </header>
+
+  <main class="mp">
+    <div class="mp__content-wrapper">
+      <img class="mp__image img" src="/styling/images/boxtop.webp" alt="takeout container with logo ontop">
+      <div class="mp__text-box">
+        <section class="mp__text">
+          <h2 class="mp__title">YUM YUM <span class="nowrap">GIMMIE SUM!</span></h2>
+          <p class="mp__text-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor repudiandae maiores nisi quaerat laboriosam ea tempora expedita illum, numquam quod  </p>
+        </section>
+        <div class="mp__buttons">
+          <button class="menuButton button">MENY/BESTÄLLNING</button>
+          <button class="findUsButton button">HITTA OSS</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
 </html>

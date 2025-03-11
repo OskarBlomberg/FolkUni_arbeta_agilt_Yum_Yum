@@ -1,0 +1,78 @@
+body {
+    background-image: url("../styling/leafs.png");
+    background-color: #CAEBCB;
+    height: 100vh;
+    display: flexbox;
+    margin: 16px;
+    margin-top: 100px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #206B52;
+    border-radius: 7px;
+    width: 100%; 
+    height: calc(100vh - 32px);
+    margin: 0;
+    padding: 0; 
+}
+
+
+h2 {
+    font-family: Fira Sans;
+    font-weight: 700;
+    font-size: 30px;
+    color: #EEEEEE;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    padding: 40px;
+    text-shadow: 1px 3px 0px rgba(0, 0, 0, 0.30);  
+}
+
+.image-carousel {
+    display: flex;
+    position: relative; 
+    justify-content: center; 
+    align-items: center;
+    width: 100%; 
+    max-width: 800px; 
+    margin: auto;
+}
+
+.image-carousel img {
+    width: 100%;
+    height: auto;
+}
+
+.material-icons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px; 
+    color: #EEEEEE;
+    /*background-color: rgba(31.75, 107.31, 81.78, 0.78); */ 
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 7px;
+    text-shadow: 1px 3px 0px rgba(0, 0, 0, 0.30);  
+}
+
+#arrow_back {
+    left: 10px; 
+}
+
+#arrow_forward {
+    right: 10px; 
+}
+
+p {
+    font-family: "Fira Sans";
+    font-weight: 500;
+    color: #EEEEEE;
+    font-size: 14px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
