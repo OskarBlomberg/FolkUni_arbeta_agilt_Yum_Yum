@@ -1,0 +1,53 @@
+.find-us-container {
+    padding-top: 10%;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #206B52;
+    border-radius: 10px;
+}
+
+.map-place-holder {
+    flex-wrap: nowrap;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 10%;
+    border-radius: 10px;
+    border: black;
+}
+
+h1 {
+    color: #F4F3F1;
+}
+
+ul {
+    width: 50%;
+    height: auto;
+    padding: 0;
+    list-style-type: none;
+}
+
+.current-location-item {
+    padding: 5%;    
+}
+
+ul :nth-child(even) {
+    background-color: rgba(241, 240, 236, 0.17);
+    color: #F4F3F1;
+}
+
+ul :nth-child(odd) {
+    background-color: #F4F3F1;
+}
+
+li {
+    margin: 2%;
+    padding: 1%;
+    border-radius: 4px;
+    font-size: large;
+    font-weight: 900;
+    text-align: center;
+}
