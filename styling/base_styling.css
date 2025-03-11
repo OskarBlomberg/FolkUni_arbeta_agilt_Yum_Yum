@@ -10,6 +10,14 @@ img {
   display: block;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
 /* UTILITY */
 
 .d-none {

@@ -1,3 +1,5 @@
+import { renderNav } from "./modules/render_page/navBar.js";
+
 if (
   window.location.pathname === "/" ||
   window.location.pathname === "/index.html"
@@ -5,6 +7,9 @@ if (
   // index
   console.log("index");
 } else if (window.location.pathname === "/pages/about-us.html") {
+  
+goToFindUs();
+goToMenu();
   // Om oss
   console.log("about us");
 } else if (window.location.pathname === "/pages/admin.html") {
@@ -27,9 +32,8 @@ if (
   console.log("receipt");
 }
 
+renderNav(window.location.pathname);
 
-goToFindUs();
-goToMenu();
 
 function goToFindUs() {
   const findUsRef = document.querySelector('.findUsButton')
@@ -47,3 +51,4 @@ function goToMenu() {
     // window.location.href = "/pages/our-menu.html"
   });
 }
+
