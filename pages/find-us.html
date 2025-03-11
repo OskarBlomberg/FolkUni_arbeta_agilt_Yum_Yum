@@ -9,25 +9,55 @@
     />
     <title>Hitta oss</title>
     <!-- <link rel="stylesheet" href="../styling/base_styling.css" /> -->
-    <link rel="stylesheet" href="../styling/find_us_styling.css">
-    <script type="module" src="main.js"></script>
+    <link rel="stylesheet" href="../styling/find_us_styling.css" />
+    <script type="module" src="/main.js"></script>
     <!-- <script type="module" src="modules/geoLocation.js"></script> -->
+    <link rel="stylesheet" href="/styling/nav-bar.css" />
   </head>
   <body>
     <header class="header">
-      <figure class="icon-container"></figure>
-      <div class="hamburger-menu" tabindex="0">
-        <nav class="hamburger-menu__list"></nav>
+      <a href="/">
+        <figure class="icon-container">
+          <img
+            src="/styling/images/Logo_128x128.png"
+            width="128"
+            height="128"
+            class="header__img"
+            alt="Logotyp och hemknapp"
+          /></figure
+      ></a>
+
+      <div>
+        <div class="cart d-none" tabindex="0"></div>
+
+        <div class="hamburger-menu" tabindex="0">
+          <figure class="icon-container">
+            <img
+              src="/styling/images/Menu_48x48.png"
+              width="48"
+              height="48"
+              class="header__img"
+              alt="Navigationsmeny"
+            />
+          </figure>
+          <nav class="hamburger-menu__nav">
+            <ul id="nav-list" class="hamburger-menu__nav__list"></ul>
+          </nav>
+        </div>
       </div>
     </header>
 
     <main>
       <section class="find-us-container">
-      <div id="map-demo">
-        <img class="map-place-holder" src="../styling/bilder/location-placeholder.png" alt="map-placeholder">
-      </div>
+        <div id="map-demo">
+          <img
+            class="map-place-holder"
+            src="../styling/bilder/location-placeholder.png"
+            alt="map-placeholder"
+          />
+        </div>
 
-<!-- Här är koden för den skarpa iFramen vi kan köra map plugin från -->
+        <!-- Här är koden för den skarpa iFramen vi kan köra map plugin från -->
         <!-- <iframe
           width="450"
           height="250"
@@ -36,15 +66,25 @@
           src="https://www.google.com/maps/embed/v1/place?key=[YOUR_API_KEY]&PARAMETERS"
           allowfullscreen>
         </iframe> -->
-<!-- Här slutar koden för map plugin -->
+        <!-- Här slutar koden för map plugin -->
 
-      <h1>Idag befinner vi oss här</h1>
+        <h1>Idag befinner vi oss här</h1>
         <ul class="schedule">
-            <li class="current-location-item">2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00</li>
-            <li class="upcoming-location-item">2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00</li>
-            <li class="upcoming-location-item">2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00</li>
-            <li class="upcoming-location-item">2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00</li>
-            <li class="upcoming-location-item">2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00</li>
+          <li class="current-location-item">
+            2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00
+          </li>
+          <li class="upcoming-location-item">
+            2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00
+          </li>
+          <li class="upcoming-location-item">
+            2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00
+          </li>
+          <li class="upcoming-location-item">
+            2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00
+          </li>
+          <li class="upcoming-location-item">
+            2025-03-10 - Folkuniversitetet Göteborg. Öppettider 10.00 - 20.00
+          </li>
         </ul>
       </section>
     </main>
