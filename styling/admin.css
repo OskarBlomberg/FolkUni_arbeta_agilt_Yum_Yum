@@ -62,7 +62,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: auto;
-  row-gap: 1rem;
+  gap: 1rem;
 }
 
 .current-order__check-name {
