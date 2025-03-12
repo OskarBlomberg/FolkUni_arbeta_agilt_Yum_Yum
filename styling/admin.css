@@ -3,7 +3,6 @@
   --GREY-DARK: #353131;
   --GREY-MEDIUM: #575757;
   --BG-DARK: #206b52;
-  --BG-DARK-TRANSP: #206b52c7;
   --BG-DARK-HIGHLIGHT: #206b5280;
   --BACKDROP-COLOUR: #caebcb;
   --TEXT-LIGHT: #f4f3f1;
@@ -72,14 +71,14 @@ body {
 }
 
 .admin__heading--h2 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 400;
   margin-right: auto;
   grid-column: span 1;
 }
 
 .current-order__amount {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 300;
   margin-left: auto;
   grid-column: span 1;
@@ -95,7 +94,7 @@ body {
 
 .current-order__ingredient {
   background-color: var(--BACKDROP-COLOUR);
-  padding: 0.4rem 0.8rem;
+  padding: 0.3rem 0.6rem;
 }
 
 .current-order__price {
@@ -107,5 +106,7 @@ body {
 /* REST OF QUEUE */
 
 .admin__queue__following {
-  border: 1px solid yellow;
+  list-style-position: inside;
+  align-self: flex-start;
+  line-height: 1.8;
 }
