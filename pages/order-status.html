@@ -8,8 +8,15 @@
       content="Rykande nudlar och heta dim sum - Yum Yum Gimmie Sum!"
     />
     <title>Din beställning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/styling/base_styling.css" />
     <link rel="stylesheet" href="/styling/nav-bar.css" />
+    <link rel="stylesheet" href="/styling/order-status.css" />
     <script type="module" src="/main.js"></script>
   </head>
   <body>
@@ -45,6 +52,29 @@
       </div>
     </header>
 
-    <main></main>
+    <main class="order-main">
+      <figure class="order-main__img-container">
+        <img
+          class="order-main__box-img"
+          src="/styling/images/boxtop.webp"
+          width="390"
+          height="362"
+          alt="En matlåda med vår logotyp"
+        />
+      </figure>
+
+      <section class="order-main__text-container">
+        <h1 class="order-main__heading">Din beställning tillagas</h1>
+        <p class="order-main__eta" id="order-eta">Placeholder eta min</p>
+        <p class="order-main__ordernumber" id="order-number">
+          Placeholder eta min
+        </p>
+      </section>
+
+      <div class="order-main__btn-container">
+        <button class="button button--new-order">Gör en ny beställning</button>
+        <button class="button button--see-receipt">Se kvitto</button>
+      </div>
+    </main>
   </body>
 </html>
