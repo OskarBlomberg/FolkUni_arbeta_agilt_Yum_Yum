@@ -1,5 +1,9 @@
 import { renderEta } from "./modules/render_page/orderStatus.js";
 import { renderNav } from "./modules/render_page/navBar.js";
+import {
+  currentOrder,
+  renderCurrentOrder,
+} from "./modules/render_page/admin.js";
 
 if (
   window.location.pathname === "/" ||
@@ -15,6 +19,7 @@ if (
 } else if (window.location.pathname === "/pages/admin.html") {
   // Admin
   console.log("admin");
+  renderCurrentOrder(currentOrder);
 } else if (window.location.pathname === "/pages/cart.html") {
   // Kundvagn
   console.log("cart");
