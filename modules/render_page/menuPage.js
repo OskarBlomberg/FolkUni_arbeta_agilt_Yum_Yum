@@ -1,6 +1,6 @@
 import { fetchMenuItems } from "../api.js";
 import { orders } from "../storage/lists.js";
-import { objToStorage, objFromStorage } from "../storage/localStorage.js";
+import { objToStorage, objFromStorage, arrToStorage } from "../storage/localStorage.js";
 
 
 //ladda menyn
