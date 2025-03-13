@@ -1,4 +1,9 @@
+import { renderEta } from "./modules/render_page/orderStatus.js";
 import { renderNav } from "./modules/render_page/navBar.js";
+import {
+  currentOrder,
+  renderCurrentOrder,
+} from "./modules/render_page/admin.js";
 
 if (
   window.location.pathname === "/" ||
@@ -14,6 +19,7 @@ if (
 } else if (window.location.pathname === "/pages/admin.html") {
   // Admin
   console.log("admin");
+  renderCurrentOrder(currentOrder);
 } else if (window.location.pathname === "/pages/cart.html") {
   // Kundvagn
   console.log("cart");
@@ -23,6 +29,7 @@ if (
 } else if (window.location.pathname === "/pages/order-status.html") {
   // Orderstatus
   console.log("order status");
+  renderEta();
 } else if (window.location.pathname === "/pages/our-menu.html") {
   // Vår meny
   console.log("our menu");
@@ -36,12 +43,12 @@ renderNav(window.location.pathname);
 function goToFindUs() {
   const findUsRef = document.querySelector(".findUsButton");
   findUsRef.addEventListener("click", () => {
-    window.location.href = "/pages/find-us.html"
+    window.location.href = "/pages/find-us.html";
   });
 }
 function goToMenu() {
   const findUsRef = document.querySelector(".menuButton");
   findUsRef.addEventListener("click", () => {
-    window.location.href = "/pages/our-menu.html"
+    window.location.href = "/pages/our-menu.html";
   });
 }

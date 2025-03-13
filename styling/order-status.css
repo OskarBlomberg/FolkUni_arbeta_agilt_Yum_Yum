@@ -83,14 +83,14 @@ body {
   gap: 1rem;
 }
 
-.button {
+.btn-like-link {
   color: var(--TEXT-LIGHT);
   background-color: var(--GREY-DARK);
-  font: inherit;
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.05rem;
   text-transform: uppercase;
+  text-align: center;
   width: 100%;
   padding: 1rem 1rem;
   border: 1px solid #d1ccca;
@@ -98,8 +98,17 @@ body {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.button--see-receipt {
+.btn-like-link--see-receipt {
   background-color: var(--GREY-MEDIUM);
+}
+
+.btn-like-link:hover,
+.btn-like-link:focus-visible {
+  filter: brightness(110%);
+}
+
+.btn-like-link:active {
+  filter: brightness(90%);
 }
 
 @media screen and (min-height: 668px) {
