@@ -8,10 +8,12 @@
       content="Rykande nudlar och heta dim sum - Yum Yum Gimmie Sum!"
     />
     <title>Kundvagn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="../styling/cart.css" />
     <link rel="stylesheet" href="../styling/base_styling.css" />
     <link rel="stylesheet" href="../styling/nav-bar.css" />
     <script type="module" src="../main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <script type="module" src="../modules/render_page/navBar.js"></script>
     <script type="module" src="../modules/cartPlaceholder.js"></script>
   </head>
@@ -28,8 +30,13 @@
           /></figure
       ></a>
 
-      <div>
-        <div class="cart d-none" tabindex="0"></div>
+      <div class="nav-icons">
+        <a href="/pages/cart.html" class="cart-link">
+          <div id="cart-btn" class="cart" tabindex="0">
+            <span class="cart_count">0</span>
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+        </a>
 
         <div class="hamburger-menu" tabindex="0">
           <figure class="icon-container">
