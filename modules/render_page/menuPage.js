@@ -117,4 +117,22 @@ export function updateItemCounts() {
 
         countElement.textContent = itemCount;
     });
+
+//henter antallet varer i handlekurven 
+const itemCount = Object.values(orders.current).reduce((sum, item) => sum + item.quantity, 0);
+
+const cartElement = document.querySelector('.cart'); 
+const countElement = document.querySelector('.cart_count');
+
+//oppdaterer antallet i icon
+countElement.textContent = itemCount;
+
+// Skjuler eller viser iconet utifra om det er noe i handlekurven eller ikke
+if (itemCount === 0) {
+    cartElement.style.display = 'none';
+} else {
+    cartElement.style.display = 'flex';
+    countElement.style.display = 'flex';
+}
+
 }
