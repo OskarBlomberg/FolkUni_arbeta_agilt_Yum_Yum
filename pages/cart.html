@@ -8,16 +8,19 @@
       content="Rykande nudlar och heta dim sum - Yum Yum Gimmie Sum!"
     />
     <title>Kundvagn</title>
-    <link rel="stylesheet" href="/styling/base_styling.css" />
-    <link rel="stylesheet" href="/styling/nav-bar.css" />
-    <script type="module" src="/main.js"></script>
+    <link rel="stylesheet" href="../styling/cart.css" />
+    <link rel="stylesheet" href="../styling/base_styling.css" />
+    <link rel="stylesheet" href="../styling/nav-bar.css" />
+    <script type="module" src="../main.js"></script>
+    <script type="module" src="../modules/render_page/navBar.js"></script>
+    <script type="module" src="../modules/cartPlaceholder.js"></script>
   </head>
   <body>
     <header class="header">
       <a href="/">
         <figure class="icon-container">
           <img
-            src="/styling/images/Logo_128x128.png"
+            src="../styling/images/Logo_128x128.png"
             width="128"
             height="128"
             class="header__img"
@@ -31,7 +34,7 @@
         <div class="hamburger-menu" tabindex="0">
           <figure class="icon-container">
             <img
-              src="/styling/images/Menu_48x48.png"
+              src="../styling/images/Menu_48x48.png"
               width="48"
               height="48"
               class="header__img"
@@ -45,6 +48,12 @@
       </div>
     </header>
 
-    <main></main>
+    <main>
+      <section class="order-container">
+        <article class="placeholder__item-element"></article>
+        <article class="placeholder__sum-element"></article>
+      </section>
+      <button class="pay-btn">take my money</button>
+    </main>
   </body>
 </html>
