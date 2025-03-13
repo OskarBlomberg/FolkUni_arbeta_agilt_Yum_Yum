@@ -1,0 +1,107 @@
+* {
+    --HIGHLIGHT: #df4a4a;
+    --BG-DARK: #206b52;
+    --BG-DARK-TRANSP: #206b52c7;
+    --BG-DARK-HIGHLIGHT: #206b5280;
+    --BACKDROP-COLOUR: #caebcb;
+    --TEXT-LIGHT: #f4f3f1;
+    --DROP-SHADOW: 0 0 16px;
+  }
+
+body {
+    background-image: url("/styling/images/leaf-background.webp");
+    /* overflow: hidden; */
+    background-color: var(--BACKDROP-COLOUR);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.menu__container {
+    height: 100%;
+    background-color: var(--BG-DARK);
+    margin: 1rem;
+    border-radius: 7px;
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+}
+
+.menu__title {
+    font-family: "Fira Sans", sans-serif;
+    color: var(--TEXT-LIGHT);
+    font-weight: 500;
+    padding: 1rem;
+}
+
+.menu__Item {
+    font-family: "Fira Sans", sans-serif;
+    color: var(--TEXT-LIGHT);
+    padding: 0.5rem;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.40);
+}
+
+.menu__item-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu__name, .menu__price {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.menu__desc {
+    /* border: 2px solid red; */
+    width: 18rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    margin-top: 1rem;
+}
+
+.menu__controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    font-family: "Fira Sans", sans-serif;
+    color: var(--TEXT-LIGHT);
+}
+
+.menu__btn {
+    font-family: "Fira Sans", sans-serif;
+    color: var(--TEXT-LIGHT);
+    background-color: #353131;
+    border: none;
+    width: 2rem;
+    height: 1.4rem;
+    border-radius: 6px;
+}
+
+.line {
+    margin-top:1rem;
+    border: 1px dotted #35313140;
+}
+
+.addons-container {
+    font-family: "Fira Sans", sans-serif;
+    color: var(--TEXT-LIGHT);
+    font-size: 1.2rem;
+    margin: 0.5rem;
+    font-weight: 700;
+}
+
+.addOnBtn {
+    font-family: "Fira Sans", sans-serif;
+    color: var(--TEXT-LIGHT);
+    background-color: #353131;
+    border: none;
+    margin: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 6px;
+    width: fit-content;
+    height: 2rem;
+}
+
+.addOnBtn:focus {
+    background-color: var(--BACKDROP-COLOUR);
+    color:#353131;
+}
