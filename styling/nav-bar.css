@@ -2,7 +2,7 @@
   --HIGHLIGHT: #df4a4a;
   --BG-DARK: #206b52;
   --BG-DARK-TRANSP: #206b52f5;
-  --BG-DARK-HIGHLIGHT: #206b5280;
+  --BG-DARK-HIGHLIGHT: hsl(160, 34%, 27%);
   --BACKDROP-COLOUR: #caebcb;
   --TEXT-LIGHT: #f4f3f1;
   --DROP-SHADOW: 0 0 16px;
@@ -37,7 +37,7 @@
 .nav-icons {
   display: flex;
   align-items: center;
-  gap: 1rem; 
+  gap: 1rem;
 }
 
 /* Stylingen til cart iconet i navbar */
@@ -100,6 +100,7 @@
 }
 
 .hamburger-menu__nav__list {
+  background-color: var(--BG-DARK-TRANSP);
   list-style: none;
   display: flex;
   flex-flow: column nowrap;
