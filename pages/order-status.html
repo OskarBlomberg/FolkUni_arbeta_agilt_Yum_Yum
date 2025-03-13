@@ -65,15 +65,25 @@
 
       <section class="order-main__text-container">
         <h1 class="order-main__heading">Din beställning tillagas</h1>
-        <p class="order-main__eta" id="order-eta">Placeholder eta min</p>
-        <p class="order-main__ordernumber" id="order-number">
-          Placeholder eta min
+        <p class="order-main__eta">
+          Beräknat klar kl. <span id="order-eta"></span>
         </p>
+        <p class="order-main__ordernumber" id="order-number">#4kjwsdf234k</p>
       </section>
 
       <div class="order-main__btn-container">
-        <button class="button button--new-order">Gör en ny beställning</button>
-        <button class="button button--see-receipt">Se kvitto</button>
+        <a
+          href="/pages/our-menu.html"
+          class="btn-like-link btn-like-link--new-order"
+        >
+          Gör en till beställning
+        </a>
+        <a
+          href="/pages/receipt.html"
+          class="btn-like-link btn-like-link--see-receipt"
+        >
+          Se kvitto
+        </a>
       </div>
     </main>
   </body>
