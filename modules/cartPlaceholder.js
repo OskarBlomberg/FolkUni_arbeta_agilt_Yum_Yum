@@ -1,16 +1,11 @@
 import { orders } from "../modules/storage/lists.js";
+import { objFromStorage, objToStorage } from "./storage/localStorage.js";
+
 
 const orderHistory = orders.previous
-// Placeholder items för ordern
-const cartItems = [
-    { name: "Item 1", price: 10.00, quantity: 1 },
-    { name: "Item 2", price: 15.00, quantity: 1 },
-    { name: "Item 3", price: 7.50, quantity: 1 },
-    { name: "Item 4", price: 7.50, quantity: 1 },
-    { name: "Item 5", price: 7.50, quantity: 1 },
-];
+const currentCartItems = objFromStorage("currentOrder");
+const cartItems = Object.values(currentCartItems)
 
-// Reference to the container where the items will be added
 const orderContainer = document.querySelector('.order-container');
 const totalPriceElement = document.getElementById('total-price');
 
@@ -29,12 +24,12 @@ function updateQuantity(index, change) {
     if (item.quantity < 1) {
         cartItems.splice(index, 1); // Remove the item from the cart array
     } else {
-        // Ensure quantity does not go below 1
         if (item.quantity < 1) {
             item.quantity = 1;
         }
     }
 
+    objToStorage(cartItems, "currentOrder");
     // Re-render the cart and update the total price
     populateCart();
     updateTotalPrice();
@@ -109,6 +104,11 @@ function populateCart() {
     sumElement.appendChild(totalPriceElement);
     
     orderContainer.appendChild(sumElement);
+
+    //uppdatera item counts där det är nödvändigt
+    // addItem()
+    // removeItem()
+    // updateItemCounts()
 }
 
 // Function to handle the "Pay" button click
@@ -140,7 +140,7 @@ function handlePayment() {
     // orderContainer.toRestaurant.push(currentOrder)
     // Clear cart (optional)
     cartItems.length = 0; // Empty the cart
-console.log(order.previous)
+console.log(orders.previous)
     // Re-render the cart (which will now be empty) and total price
     populateCart();
     updateTotalPrice();
