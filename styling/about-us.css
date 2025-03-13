@@ -1,10 +1,15 @@
 body {
     background-image: url("../styling/leafs.png");
     background-color: #CAEBCB;
-    height: 100vh;
-    display: flexbox;
-    margin: 16px;
-    margin-top: 100px;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+main {
+    padding: 2rem;
 }
 
 .container {
@@ -16,14 +21,15 @@ body {
     width: 100%; 
     height: calc(100vh - 32px);
     margin: 0;
-    padding: 0; 
+    padding: 0;
+    overflow: auto;
 }
 
 
 h2 {
     font-family: Fira Sans;
     font-weight: 700;
-    font-size: 30px;
+    font-size: 2rem;
     color: #EEEEEE;
     text-transform: uppercase;
     word-wrap: break-word;
@@ -50,7 +56,7 @@ h2 {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 40px; 
+    font-size: 2.5rem; 
     color: #EEEEEE;
     /*background-color: rgba(31.75, 107.31, 81.78, 0.78); */ 
     padding: 3px;
@@ -60,18 +66,18 @@ h2 {
 }
 
 #arrow_back {
-    left: 10px; 
+    left: 0.650rem; 
 }
 
 #arrow_forward {
-    right: 10px; 
+    right: 0.650rem; 
 }
 
 p {
     font-family: "Fira Sans";
     font-weight: 500;
     color: #EEEEEE;
-    font-size: 14px;
+    font-size: 0.850rem;
     padding: 20px;
     flex-wrap: wrap;
 }
