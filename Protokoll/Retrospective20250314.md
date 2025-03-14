@@ -1,4 +1,4 @@
-# Mötesprotokoll (dagens datum)
+# Mötesprotokoll (2025-03-14)
 
 ## Närvarande
 * Christian
