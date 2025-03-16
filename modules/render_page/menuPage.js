@@ -87,6 +87,7 @@ function removeItem(itemRef, menuItem) {
     minusButton.addEventListener('click', () => {
         removeFromCart(menuItem);
         updateItemCounts();
+        updateCartIcon();
     });
 }
 
@@ -97,6 +98,7 @@ function addItem(itemRef, menuItem) {
     plusButton.addEventListener('click', () => {
         addToCart(menuItem); // Lägg till objektet i kundvagnen
         updateItemCounts(); // Uppdatera alla count-element på sidan
+        updateCartIcon();
     });
 }
 
@@ -117,22 +119,35 @@ export function updateItemCounts() {
 
         countElement.textContent = itemCount;
     });
-
-//henter antallet varer i handlekurven 
-const itemCount = Object.values(orders.current).reduce((sum, item) => sum + item.quantity, 0);
-
-const cartElement = document.querySelector('.cart'); 
-const countElement = document.querySelector('.cart_count');
-
-//oppdaterer antallet i icon
-countElement.textContent = itemCount;
-
-// Skjuler eller viser iconet utifra om det er noe i handlekurven eller ikke
-if (itemCount === 0) {
-    cartElement.style.display = 'none';
-} else {
-    cartElement.style.display = 'flex';
-    countElement.style.display = 'flex';
 }
 
+export function updateCartIcon() {
+    //henter den lagrede ordren fra localstorage
+    const savedOrder = objFromStorage('currentOrder') || {};
+    console.log('Saved Order:', savedOrder);  //logger eventuelle bugger
+
+    //Beregner totalt antall varer i ordren
+    const itemCount = Object.values(savedOrder).reduce((sum, item) => {
+        // Sjekker om varen og antallet er gyldig
+        if (item && item.quantity) {
+            return sum + item.quantity;  //legger til antall
+        }
+        return sum; 
+    }, 0);
+
+    const cartElement = document.querySelector('.cart');
+    const countElement = document.querySelector('.cart_count');
+
+    console.log('Item Count:', itemCount);  //Sjekker antallet i handlekurv
+    countElement.textContent = itemCount;  // Oppdaterer antallet som vises
+
+    //Gjør at handlekurven skjules om den er tom og vises om ligger noe i den
+    if (itemCount === 0) {
+        cartElement.style.display = 'none';
+    } else {
+        cartElement.style.display = 'flex';
+        countElement.style.display = 'flex';
+    }
 }
+
+
