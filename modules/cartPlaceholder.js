@@ -1,10 +1,10 @@
 import { orders } from "../modules/storage/lists.js";
-import { objFromStorage, objToStorage } from "./storage/localStorage.js";
+import { objFromStorage, objToStorage } from "../storage/localStorage.js";
 
 
-const orderHistory = orders.previous
+const orderHistory = orders.previous;
 const currentCartItems = objFromStorage("currentOrder");
-const cartItems = Object.values(currentCartItems)
+const cartItems = Object.values(currentCartItems);
 
 const orderContainer = document.querySelector('.order-container');
 const totalPriceElement = document.getElementById('total-price');
