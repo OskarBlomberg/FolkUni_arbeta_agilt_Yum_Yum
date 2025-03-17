@@ -183,6 +183,18 @@ export function updateItemCounts() {
   });
 }
 
+function toggleItemInLocalStorage(item, button) {
+	if(orders.current[item.id]) {
+			button.classList.remove('selected');
+			removeFromCart(item);
+	} else {
+			button.classList.add('selected')
+			addToCart(item);
+	}
+}
+
+// localStorage.clear
+
 export function updateCartIcon() {
   //henter den lagrede ordren fra localstorage
   const savedOrder = objFromStorage("currentOrder") || {};
