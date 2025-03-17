@@ -5,6 +5,10 @@ import {
   currentOrder,
   renderCurrentOrder,
 } from "./modules/render_page/admin.js";
+import { 
+  goToFindUs,
+  goToMenu 
+} from "./modules/utility.js";
 
 if (
   window.location.pathname === "/" ||
@@ -42,16 +46,3 @@ if (
 renderNav(window.location.pathname);
 updateCartIcon();
 updateItemCounts(); 
-
-function goToFindUs() {
-  const findUsRef = document.querySelector(".findUsButton");
-  findUsRef.addEventListener("click", () => {
-    window.location.href = "/pages/find-us.html";
-  });
-}
-function goToMenu() {
-  const findUsRef = document.querySelector(".menuButton");
-  findUsRef.addEventListener("click", () => {
-    window.location.href = "/pages/our-menu.html";
-  });
-}
