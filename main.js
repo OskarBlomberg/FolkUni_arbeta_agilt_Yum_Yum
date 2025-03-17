@@ -1,5 +1,6 @@
 import { renderEta } from "./modules/render_page/orderStatus.js";
 import { renderNav } from "./modules/render_page/navBar.js";
+import { updateCartIcon, updateItemCounts } from "./modules/render_page/menuPage.js";
 import {
   currentOrder,
   renderCurrentOrder,
@@ -43,3 +44,5 @@ if (
 }
 
 renderNav(window.location.pathname);
+updateCartIcon();
+updateItemCounts(); 

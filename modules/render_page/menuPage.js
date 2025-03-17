@@ -135,20 +135,22 @@ function removeFromCart(item) {
 function removeItem(itemRef, menuItem) {
 	const minusButton = itemRef.querySelector('.menuMinusBtn');
 
-	minusButton.addEventListener('click', () => {
-		removeFromCart(menuItem);
-		updateItemCounts();
-	});
+    minusButton.addEventListener('click', () => {
+        removeFromCart(menuItem);
+        updateItemCounts();
+        updateCartIcon();
+    });
 }
 
 //adderar 1 när man trycker på plusknappen
 function addItem(itemRef, menuItem) {
 	const plusButton = itemRef.querySelector('.menuPlusBtn');
 
-	plusButton.addEventListener('click', () => {
-		addToCart(menuItem); // Lägg till objektet i kundvagnen
-		updateItemCounts(); // Uppdatera alla count-element på sidan
-	});
+    plusButton.addEventListener('click', () => {
+        addToCart(menuItem); // Lägg till objektet i kundvagnen
+        updateItemCounts(); // Uppdatera alla count-element på sidan
+        updateCartIcon();
+    });
 }
 
 window.addEventListener('load', () => {
@@ -167,26 +169,37 @@ window.addEventListener('load', () => {
 	});
 
 
-//updatera antalet på alla objekt från localstorage
-export function updateItemCounts() {
-	const countRef = document.querySelectorAll('.count');
-
-	countRef.forEach((countElement) => {
-		const itemId = countElement.closest('.menuItem').dataset.itemId;
-		const itemCount = orders.current[itemId]
-			? orders.current[itemId].quantity
-			: 0;
-
-		countElement.textContent = itemCount;
-	});
+        countElement.textContent = itemCount;
+    });
 }
 
-function toggleItemInLocalStorage(item, button) {
-    if(orders.current[item.id]) {
-        button.classList.remove('selected');
-        removeFromCart(item);
+export function updateCartIcon() {
+    //henter den lagrede ordren fra localstorage
+    const savedOrder = objFromStorage('currentOrder') || {};
+    console.log('Saved Order:', savedOrder);  //logger eventuelle bugger
+
+    //Beregner totalt antall varer i ordren
+    const itemCount = Object.values(savedOrder).reduce((sum, item) => {
+        // Sjekker om varen og antallet er gyldig
+        if (item && item.quantity) {
+            return sum + item.quantity;  //legger til antall
+        }
+        return sum; 
+    }, 0);
+
+    const cartElement = document.querySelector('.cart');
+    const countElement = document.querySelector('.cart_count');
+
+    console.log('Item Count:', itemCount);  //Sjekker antallet i handlekurv
+    countElement.textContent = itemCount;  // Oppdaterer antallet som vises
+
+    //Gjør at handlekurven skjules om den er tom og vises om ligger noe i den
+    if (itemCount === 0) {
+        cartElement.style.display = 'none';
     } else {
-        button.classList.add('selected')
-        addToCart(item);
+        cartElement.style.display = 'flex';
+        countElement.style.display = 'flex';
     }
 }
+
+
