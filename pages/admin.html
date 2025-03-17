@@ -60,20 +60,22 @@
         <h1 class="admin__heading admin__heading--h1">Beställningar</h1>
 
         <article class="current-order" id="current-order">
-          <label class="current-order__check-name">
-            <input
-              class="current-order__checkbox"
-              type="checkbox"
-              name="item-ready"
-            />
-            <h2 class="admin__heading admin__heading--h2">Rätt</h2>
-          </label>
-          <p class="current-order__amount">3</p>
-          <ul class="current-order__ingredients">
-            <li class="current-order__ingredient">Halm</li>
-            <li class="current-order__ingredient">Sork</li>
-            <li class="current-order__ingredient">Ost</li>
-          </ul>
+          <section class="current-order__sub-item">
+            <label class="current-order__check-name">
+              <input
+                class="current-order__checkbox"
+                type="checkbox"
+                name="item-ready"
+              />
+              <h2 class="admin__heading admin__heading--h2">Rätt</h2>
+            </label>
+            <p class="current-order__amount">3</p>
+            <ul class="current-order__ingredients">
+              <li class="current-order__ingredient">Halm</li>
+              <li class="current-order__ingredient">Sork</li>
+              <li class="current-order__ingredient">Ost</li>
+            </ul>
+          </section>
           <p class="current-order__price">1 billion dollars</p>
           <button class="button current-order__done-btn">Avsluta</button>
         </article>
