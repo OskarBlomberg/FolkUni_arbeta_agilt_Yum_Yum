@@ -20,6 +20,7 @@ body {
   height: 100%;
   background-color: var(--BG-DARK);
   margin: 1rem;
+  padding: 0.5rem;
   border-radius: 7px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -50,17 +51,17 @@ body {
 }
 
 .menu__desc {
-  /* border: 2px solid red; */
   width: 18rem;
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .menu__controls {
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 0.5rem;
   font-family: "Fira Sans", sans-serif;
   color: var(--TEXT-LIGHT);
 }
@@ -88,7 +89,12 @@ body {
   font-weight: 700;
 }
 
-.addOnBtn {
+.menu__addons-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu__addonBtn {
   font-family: "Fira Sans", sans-serif;
   color: var(--TEXT-LIGHT);
   background-color: #353131;
@@ -100,7 +106,7 @@ body {
   height: 2rem;
 }
 
-.addOnBtn:focus {
+.selected {
   background-color: var(--BACKDROP-COLOUR);
   color: #353131;
 }
