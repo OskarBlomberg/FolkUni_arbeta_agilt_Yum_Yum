@@ -1,4 +1,6 @@
-import { arrFromStorage } from "../storage/localStorage.js";
+import { adminEventListeners } from "../eventHandlers.js";
+import { orders } from "../storage/lists.js";
+import { arrFromStorage, arrToStorage } from "../storage/localStorage.js";
 
 // orders.toRestaurant = arrFromStorage(toRestaurant)
 let placeholderArr = [
@@ -36,6 +38,15 @@ let placeholderArr = [
 
 export let currentOrder = placeholderArr[0];
 
+export function getQueue() {
+  orders.toRestaurant = arrFromStorage("toRestaurant");
+}
+
+export function removeFromQueue(index) {
+  orders.toRestaurant.splice(index, 1);
+  arrToStorage("toRestaurant");
+}
+
 export function renderCurrentOrder(current) {
   let currentOrderEl = document.getElementById("current-order");
   let orderTotalPrice = [];
@@ -69,10 +80,11 @@ export function renderCurrentOrder(current) {
     "beforeend",
     `
     <p class="current-order__price">${sumString(orderTotalPrice)} :-</p>
-          <button class="button current-order__done-btn">Avsluta</button>
+          <button class="button current-order__done-btn" id="done-btn">Avsluta</button>
     `
   );
   console.log(sumString(orderTotalPrice));
+  adminEventListeners();
 }
 
 function sumString(arr) {

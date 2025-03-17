@@ -9,6 +9,7 @@
 }
 
 body {
+  background-image: none;
   background-color: var(--BG-DARK);
   color: var(--GREY-DARK);
   font-family: "Fira Sans", sans-serif;
