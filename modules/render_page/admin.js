@@ -38,27 +38,47 @@ export let currentOrder = placeholderArr[0];
 
 export function renderCurrentOrder(current) {
   let currentOrderEl = document.getElementById("current-order");
+  let orderTotalPrice = [];
   currentOrderEl.innerHTML = "";
-  console.log(current);
+
   for (const item of current.items) {
+    orderTotalPrice.push(item.totalPrice);
     currentOrderEl.insertAdjacentHTML(
       "beforeend",
       `
+      <section class="current-order__sub-item">
         <label class="current-order__check-name">
-            <input
-              class="current-order__checkbox"
-              type="checkbox"
-              name="item-ready"
-            />
-            <h2 class="admin__heading admin__heading--h2">${item.name}</h2>
-          </label>
-          <p class="current-order__amount">${item.quantity}</p>
-          <ul class="current-order__ingredients">
-            <li class="current-order__ingredient">Halm</li>
-            <li class="current-order__ingredient">Sork</li>
-            <li class="current-order__ingredient">Ost</li>
-          </ul>
-        `
+          <input
+            class="current-order__checkbox"
+            type="checkbox"
+            name="item-ready"
+          />
+          <h2 class="admin__heading admin__heading--h2">${item.name}</h2>
+        </label>
+        <p class="current-order__amount">${item.quantity}</p>
+        <ul class="current-order__ingredients">
+          <li class="current-order__ingredient">Halm</li>
+          <li class="current-order__ingredient">Sork</li>
+          <li class="current-order__ingredient">Ost</li>
+        </ul>
+      </section>
+      `
     );
   }
+  currentOrderEl.insertAdjacentHTML(
+    "beforeend",
+    `
+    <p class="current-order__price">${sumString(orderTotalPrice)} :-</p>
+          <button class="button current-order__done-btn">Avsluta</button>
+    `
+  );
+  console.log(sumString(orderTotalPrice));
+}
+
+function sumString(arr) {
+  let total = 0;
+  for (const num of arr) {
+    total += Number(num);
+  }
+  return total.toFixed(2);
 }

@@ -6,6 +6,16 @@
   box-sizing: border-box;
 }
 
+body {
+  background-image: url("/styling/images/leaf-background.webp");
+  /* overflow: hidden; */
+  background-color: var(--BACKDROP-COLOUR);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 img {
   display: block;
 }

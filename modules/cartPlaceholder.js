@@ -1,6 +1,6 @@
 import { orders } from "../modules/storage/lists.js";
-import { objFromStorage, objToStorage } from "../storage/localStorage.js";
-
+import { objFromStorage, objToStorage, arrToStorage } from "./storage/localStorage.js";
+import { updateItemCounts, getMenuItems, menuItems } from "./render_page/menuPage.js";
 
 const orderHistory = orders.previous;
 const currentCartItems = objFromStorage("currentOrder");
@@ -8,6 +8,7 @@ const cartItems = Object.values(currentCartItems);
 
 const orderContainer = document.querySelector('.order-container');
 const totalPriceElement = document.getElementById('total-price');
+console.log(currentCartItems);
 
 // Prisuppdatering
 function updateTotalPrice() {
@@ -18,6 +19,7 @@ function updateTotalPrice() {
 // Function to update the quantity of an item
 function updateQuantity(index, change) {
     const item = cartItems[index];
+    
     item.quantity += change;
 
     // Remove item from cart if quantity is less than 1
@@ -29,7 +31,7 @@ function updateQuantity(index, change) {
         }
     }
 
-    objToStorage(cartItems, "currentOrder");
+    objToStorage(currentCartItems, "currentOrder");
     // Re-render the cart and update the total price
     populateCart();
     updateTotalPrice();
@@ -65,6 +67,9 @@ function populateCart() {
         minusButton.classList.add('minus-btn');
         minusButton.textContent = '<';
         minusButton.addEventListener('click', () => updateQuantity(index, -1));
+        
+        console.log(objFromStorage("currentOrder"));
+        
 
         const quantityDisplay = document.createElement('span');
         quantityDisplay.classList.add('quantity-display');
@@ -108,11 +113,15 @@ function populateCart() {
     //uppdatera item counts där det är nödvändigt
     // addItem()
     // removeItem()
-    // updateItemCounts()
+    updateItemCounts()
 }
 
 // Function to handle the "Pay" button click
 function handlePayment() {
+
+    // const saveToRestaurant = objFromStorage("orderHistory") || {}
+    // objToStorage(toRestaurant)
+    
 
     const orderNumber = Date.now();
     // Add current cart to order history
@@ -132,19 +141,21 @@ function handlePayment() {
     });
     console.log(orderHistory)
     // Disable cart (no further modifications allowed)
-    document.querySelector('.pay-btn').disabled = true;
+    // document.querySelector('.pay-btn').disabled = true;
 
     // Push till previous
-    orders.previous.push(currentOrder)
+    // orders.previous.push(currentOrder)
     // Push till toRestaurant
-    // orderContainer.toRestaurant.push(currentOrder)
+    arrToStorage(orderHistory, "toRestaurant");
+    // console.log(toRestaurant);
+    
     // Clear cart (optional)
-    cartItems.length = 0; // Empty the cart
-console.log(orders.previous)
+    currentOrder.length = 0; // Empty the cart
+// console.log(orders.previous)
     // Re-render the cart (which will now be empty) and total price
     populateCart();
     updateTotalPrice();
-
+    // arrToStorage(currentOrder)
     // Display the completed order (without the ability to change it)
     // displayOrderHistory();
 }

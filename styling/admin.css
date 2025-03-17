@@ -2,6 +2,7 @@
   --HIGHLIGHT: #df4a4a;
   --GREY-DARK: #353131;
   --GREY-MEDIUM: #575757;
+  --GREY-LIGHT: #d9d9d9;
   --BG-DARK: #206b52;
   --BACKDROP-COLOUR: #caebcb;
   --TEXT-LIGHT: #f4f3f1;
@@ -35,7 +36,8 @@ body {
 
 .admin {
   min-height: calc(100vh - 4rem);
-  margin-top: 2rem;
+  width: 90%;
+  margin: 1rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,8 +46,8 @@ body {
 
 .admin__queue {
   min-height: 75vh;
-  width: 90%;
-  padding: 1rem;
+  width: 100%;
+  padding: 1rem 0;
   background-color: var(--TEXT-LIGHT);
   display: flex;
   flex-direction: column;
@@ -58,10 +60,21 @@ body {
 .current-order {
   border-bottom: 1px solid var(--GREY-MEDIUM);
   padding-bottom: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.current-order__sub-item {
+  padding: 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: auto;
   gap: 1rem;
+}
+
+.current-order__sub-item:nth-child(even) {
+  background-color: var(--GREY-LIGHT);
 }
 
 .current-order__check-name {
@@ -97,14 +110,32 @@ body {
 }
 
 .current-order__price {
+  font-size: 1.2rem;
   margin-top: 1rem;
-  grid-column: 2 / 3;
-  position: end;
+  padding: 0.5rem;
+  align-self: center;
+}
+
+.current-order__done-btn {
+  font: inherit;
+  align-self: center;
+  height: 3.8rem;
+  width: 17rem;
+  background-color: var(--HIGHLIGHT);
+  border: 1px solid #d1ccca;
+  color: var(--TEXT-LIGHT);
+  border-radius: 7px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.05rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 /* REST OF QUEUE */
 
 .admin__queue__following {
+  padding: 1rem;
   list-style-position: inside;
   align-self: flex-start;
   line-height: 1.8;
