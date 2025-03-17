@@ -1,152 +1,155 @@
 import { orders } from "../modules/storage/lists.js";
+import { updateCartIcon } from "./render_page/menuPage.js";
 import { objFromStorage, objToStorage } from "./storage/localStorage.js";
 
-
-const orderHistory = orders.previous
+const orderHistory = orders.previous;
 const currentCartItems = objFromStorage("currentOrder");
-const cartItems = Object.values(currentCartItems)
+const cartItems = Object.values(currentCartItems);
 
-const orderContainer = document.querySelector('.order-container');
-const totalPriceElement = document.getElementById('total-price');
+const orderContainer = document.querySelector(".order-container");
+const totalPriceElement = document.getElementById("total-price");
 
 // Prisuppdatering
 function updateTotalPrice() {
-    const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    // totalPriceElement.textContent = `${totalPrice.toFixed(2)}`;
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+  // totalPriceElement.textContent = `${totalPrice.toFixed(2)}`;
 }
 
 // Function to update the quantity of an item
 function updateQuantity(index, change) {
-    const item = cartItems[index];
-    item.quantity += change;
+  const item = cartItems[index];
+  item.quantity += change;
 
-    // Remove item from cart if quantity is less than 1
+  // Remove item from cart if quantity is less than 1
+  if (item.quantity < 1) {
+    cartItems.splice(index, 1); // Remove the item from the cart array
+  } else {
     if (item.quantity < 1) {
-        cartItems.splice(index, 1); // Remove the item from the cart array
-    } else {
-        if (item.quantity < 1) {
-            item.quantity = 1;
-        }
+      item.quantity = 1;
     }
+  }
 
-    objToStorage(cartItems, "currentOrder");
-    // Re-render the cart and update the total price
-    populateCart();
-    updateTotalPrice();
+  objToStorage(cartItems, "currentOrder");
+  // Re-render the cart and update the total price
+  populateCart();
+  updateTotalPrice();
 }
 
 // Function to populate the cart with items and quantity controls
 function populateCart() {
-    let totalPrice = 0;
-    
-    // Clear current content
-    orderContainer.innerHTML = '';
+  let totalPrice = 0;
 
-    // Add each item to the container
-    cartItems.forEach((item, index) => {
-        totalPrice += item.price * item.quantity;
+  // Clear current content
+  orderContainer.innerHTML = "";
 
-        const itemElement = document.createElement('div');
-        itemElement.classList.add('placeholder__item-element');
-        
-        const itemName = document.createElement('span');
-        itemName.classList.add('item-name');
-        itemName.textContent = item.name;
+  // Add each item to the container
+  cartItems.forEach((item, index) => {
+    totalPrice += item.price * item.quantity;
 
-        const itemPrice = document.createElement('span');
-        itemPrice.classList.add('item-price');
-        itemPrice.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
+    const itemElement = document.createElement("div");
+    itemElement.classList.add("placeholder__item-element");
 
-        // Quantity controls (plus/minus buttons)
-        const quantityControls = document.createElement('div');
-        quantityControls.classList.add('quantity-controls');
+    const itemName = document.createElement("span");
+    itemName.classList.add("item-name");
+    itemName.textContent = item.name;
 
-        const minusButton = document.createElement('button');
-        minusButton.classList.add('minus-btn');
-        minusButton.textContent = '<';
-        minusButton.addEventListener('click', () => updateQuantity(index, -1));
+    const itemPrice = document.createElement("span");
+    itemPrice.classList.add("item-price");
+    itemPrice.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
 
-        const quantityDisplay = document.createElement('span');
-        quantityDisplay.classList.add('quantity-display');
-        quantityDisplay.textContent = `x ${item.quantity}`;
+    // Quantity controls (plus/minus buttons)
+    const quantityControls = document.createElement("div");
+    quantityControls.classList.add("quantity-controls");
 
-        const plusButton = document.createElement('button');
-        plusButton.classList.add('plus-btn');
-        plusButton.textContent = '>';
-        plusButton.addEventListener('click', () => updateQuantity(index, 1));
+    const minusButton = document.createElement("button");
+    minusButton.classList.add("minus-btn");
+    minusButton.textContent = "<";
+    minusButton.addEventListener("click", () => updateQuantity(index, -1));
 
-        quantityControls.appendChild(minusButton);
-        quantityControls.appendChild(quantityDisplay);
-        quantityControls.appendChild(plusButton);
+    const quantityDisplay = document.createElement("span");
+    quantityDisplay.classList.add("quantity-display");
+    quantityDisplay.textContent = `x ${item.quantity}`;
 
+    const plusButton = document.createElement("button");
+    plusButton.classList.add("plus-btn");
+    plusButton.textContent = ">";
+    plusButton.addEventListener("click", () => updateQuantity(index, 1));
 
-        // Append elements to item
-        itemElement.appendChild(itemName);
-        itemElement.appendChild(itemPrice);
-        itemElement.appendChild(quantityControls);
-        
-        
-        orderContainer.appendChild(itemElement);
-    });
+    quantityControls.appendChild(minusButton);
+    quantityControls.appendChild(quantityDisplay);
+    quantityControls.appendChild(plusButton);
 
-    // Add the sum element at the bottom
-    const sumElement = document.createElement('div');
-    sumElement.classList.add('placeholder__sum-element');
-    
-    const totalLabel = document.createElement('span');
-    totalLabel.textContent = 'Total';
-    
-    const totalPriceElement = document.createElement('span');
-    totalPriceElement.classList.add('price');
-    totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
-    
-    sumElement.appendChild(totalLabel);
-    sumElement.appendChild(totalPriceElement);
-    
-    orderContainer.appendChild(sumElement);
+    // Append elements to item
+    itemElement.appendChild(itemName);
+    itemElement.appendChild(itemPrice);
+    itemElement.appendChild(quantityControls);
 
-    //uppdatera item counts där det är nödvändigt
-    // addItem()
-    // removeItem()
-    // updateItemCounts()
+    orderContainer.appendChild(itemElement);
+    updateCartIcon();
+  });
+
+  // Add the sum element at the bottom
+  const sumElement = document.createElement("div");
+  sumElement.classList.add("placeholder__sum-element");
+
+  const totalLabel = document.createElement("span");
+  totalLabel.textContent = "Total";
+
+  const totalPriceElement = document.createElement("span");
+  totalPriceElement.classList.add("price");
+  totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+
+  sumElement.appendChild(totalLabel);
+  sumElement.appendChild(totalPriceElement);
+
+  orderContainer.appendChild(sumElement);
+
+  //uppdatera item counts där det är nödvändigt
+  // addItem()
+  // removeItem()
+  // updateItemCounts()
 }
 
 // Function to handle the "Pay" button click
 function handlePayment() {
+  const orderNumber = Date.now();
+  // Add current cart to order history
+  const currentOrder = cartItems.map((item) => ({
+    name: item.name,
+    quantity: item.quantity,
+    price: item.price,
+    totalPrice: (item.price * item.quantity).toFixed(2),
+  }));
 
-    const orderNumber = Date.now();
-    // Add current cart to order history
-    const currentOrder = cartItems.map(item => ({
-        name: item.name,
-        quantity: item.quantity,
-        price: item.price,
-        totalPrice: (item.price * item.quantity).toFixed(2)
-    }));
+  // Add order to order history
+  orderHistory.push({
+    orderID: orderNumber,
+    items: currentOrder,
+    // addOns: addOns, // Tillägg som läsk, såser osv osv
+    totalPrice: cartItems
+      .reduce((sum, item) => sum + item.price * item.quantity, 0)
+      .toFixed(2),
+  });
+  console.log(orderHistory);
+  // Disable cart (no further modifications allowed)
+  document.querySelector(".pay-btn").disabled = true;
 
-    // Add order to order history
-    orderHistory.push({
-        orderID: orderNumber,
-        items: currentOrder,
-        // addOns: addOns, // Tillägg som läsk, såser osv osv
-        totalPrice: cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)
-    });
-    console.log(orderHistory)
-    // Disable cart (no further modifications allowed)
-    document.querySelector('.pay-btn').disabled = true;
+  // Push till previous
+  orders.previous.push(currentOrder);
+  // Push till toRestaurant
+  // orderContainer.toRestaurant.push(currentOrder)
+  // Clear cart (optional)
+  cartItems.length = 0; // Empty the cart
+  console.log(orders.previous);
+  // Re-render the cart (which will now be empty) and total price
+  populateCart();
+  updateTotalPrice();
 
-    // Push till previous
-    orders.previous.push(currentOrder)
-    // Push till toRestaurant
-    // orderContainer.toRestaurant.push(currentOrder)
-    // Clear cart (optional)
-    cartItems.length = 0; // Empty the cart
-console.log(orders.previous)
-    // Re-render the cart (which will now be empty) and total price
-    populateCart();
-    updateTotalPrice();
-
-    // Display the completed order (without the ability to change it)
-    // displayOrderHistory();
+  // Display the completed order (without the ability to change it)
+  // displayOrderHistory();
 }
 
 // // Function to display completed orders in a new section
@@ -176,7 +179,7 @@ console.log(orders.previous)
 // }
 
 // Event listener to the pay button
-document.querySelector('.pay-btn').addEventListener('click', handlePayment);
+document.querySelector(".pay-btn").addEventListener("click", handlePayment);
 
 // Call the function to populate the cart initially
 populateCart();
