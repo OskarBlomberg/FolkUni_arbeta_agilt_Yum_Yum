@@ -8,7 +8,7 @@
 
 import { orders } from "../storage/lists.js";
 import { arrFromStorage } from "../storage/localStorage.js";
-import { randomFiveToTen } from "/..modules/utility.js";
+import { randomFiveToTen } from "../utility.js";
 
 // const orders = arrFromStorage(resturantsOrders);
 // const latestOrder = arrFromStorage(customersOrders)[-1];

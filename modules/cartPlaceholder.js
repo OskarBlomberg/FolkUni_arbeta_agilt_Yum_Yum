@@ -1,8 +1,8 @@
 import { orders } from "../modules/storage/lists.js";
-import { objFromStorage, objToStorage, arrToStorage } from "./storage/localStorage.js";
-import { updateItemCounts, getMenuItems, menuItems } from "./render_page/menuPage.js";
+import { objFromStorage, objToStorage, arrToStorage, arrFromStorage } from "./storage/localStorage.js";
+import { updateItemCounts, updateCartIcon, } from "./render_page/menuPage.js";
 
-const orderHistory = orders.previous;
+const orderHistory = arrFromStorage("toRestaurant");
 const currentCartItems = objFromStorage("currentOrder");
 const cartItems = Object.values(currentCartItems);
 
@@ -35,6 +35,9 @@ function updateQuantity(index, change) {
     // Re-render the cart and update the total price
     populateCart();
     updateTotalPrice();
+    updateItemCounts();
+    updateCartIcon();
+
 }
 
 // Function to populate the cart with items and quantity controls
@@ -133,28 +136,26 @@ function handlePayment() {
     }));
 
     // Add order to order history
-    orderHistory.push({
+    let ongoingOrder = {
         orderID: orderNumber,
         items: currentOrder,
         // addOns: addOns, // Tillägg som läsk, såser osv osv
         totalPrice: cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)
-    });
-    console.log(orderHistory)
-    // Disable cart (no further modifications allowed)
-    // document.querySelector('.pay-btn').disabled = true;
-
-    // Push till previous
-    // orders.previous.push(currentOrder)
-    // Push till toRestaurant
+    }
+    orderHistory.push(ongoingOrder);
+   
     arrToStorage(orderHistory, "toRestaurant");
-    // console.log(toRestaurant);
+  
     
-    // Clear cart (optional)
-    currentOrder.length = 0; // Empty the cart
-// console.log(orders.previous)
-    // Re-render the cart (which will now be empty) and total price
+    // Clear cart
+    objToStorage(ongoingOrder, "placedOrder"); // Empty the cart
+
+    localStorage.removeItem("currentOrder");
+
     populateCart();
     updateTotalPrice();
+
+    window.location.href = "/pages/order-status.html";
     // arrToStorage(currentOrder)
     // Display the completed order (without the ability to change it)
     // displayOrderHistory();
