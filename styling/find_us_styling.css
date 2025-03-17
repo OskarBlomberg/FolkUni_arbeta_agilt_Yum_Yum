@@ -1,5 +1,8 @@
+main {
+    margin: 1rem;
+}
+
 .find-us-container {
-    padding-top: 10%;
     height: auto;
     width: 100%;
     display: flex;
@@ -21,13 +24,22 @@
 
 .h1-white {
     color: #F4F3F1;
+    font-family: "Fira Sans", sans-serif;
+    color: var(--TEXT-LIGHT);
+    font-weight: solid 500;
+    padding: 2rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-shadow: 1px 3px 0px rgba(0, 0, 0, 0.30);  
 }
 
 .schedule {
-    width: 50%;
+    width: 90%;
     height: auto;
+    margin: 1rem;
     padding: 0;
     list-style-type: none;
+    font-family: "Fira Sans", sans-serif;
 }
 
 .current-location-item {
@@ -48,6 +60,7 @@
     padding: 1%;
     border-radius: 4px;
     font-size: large;
+    font-family: "Fira Sans", sans-serif;
     font-weight: 900;
     text-align: center;
 }
