@@ -6,6 +6,7 @@ import {
   arrFromStorage,
 } from "./storage/localStorage.js";
 import { updateItemCounts, updateCartIcon } from "./render_page/menuPage.js";
+import { addCookingTime } from "./render_page/orderStatus.js";
 
 const orderHistory = arrFromStorage("toRestaurant");
 const currentCartItems = objFromStorage("currentOrder");
@@ -147,6 +148,7 @@ function handlePayment() {
   let ongoingOrder = {
     orderID: orderNumber,
     items: currentOrder,
+    cookingTime: addCookingTime(currentOrder), // slumpar koktid baserat på antal wontons
     // addOns: addOns, // Tillägg som läsk, såser osv osv
     totalPrice: cartItems
       .reduce((sum, item) => sum + item.price * item.quantity, 0)

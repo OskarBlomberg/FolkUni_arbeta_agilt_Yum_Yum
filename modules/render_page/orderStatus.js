@@ -30,10 +30,25 @@ export function countQueue(orders) {
   return courseCount;
 }
 
-function addEtaToOrder(amount) {
+// lägger på en slumpad tillagningstid för varje wonton
+export function addCookingTime(arr) {
+  let courseCount = 0;
+  let cookingTime = 0;
+  for (const item of arr) {
+    if (item.type === "wonton") {
+      courseCount += item.quantity;
+    }
+  }
+  for (let i = courseCount; i > 0; i--) {
+    cookingTime += randomInRange(2, 4);
+  }
+  return cookingTime;
+}
+
+function addEtaToOrder(arr) {
   let total = 0;
-  for (let i = 1; i <= amount; i++) {
-    total += randomInRange(2, 5); // lägger på 2-5 minuter per rätt
+  for (const entry of arr) {
+    total += entry.cookingTime;
   }
   return total;
 }
@@ -47,11 +62,14 @@ export function orderNumberToPage(order) {
 export function renderEta(orderNumber) {
   const etaEl = document.getElementById("order-eta");
 
-  const orderTime = addEtaToOrder(totalQueue); // argument ska vara orderNumber.numberOfCourses
+  const totalQueueTime = addEtaToOrder(orders.toRestaurant);
+  console.log(totalQueueTime);
 
-  /* etaEl.textContent = orderTime + placeHolderQueue; */ // Om man vill ha ETA i minuter
+  //const orderTime = addEtaToOrder(totalQueue); // argument ska vara orderNumber.numberOfCourses
 
-  etaEl.textContent = clockTimePlusEta(orderTime); // ger ETA i klocktid (ska använda riktiga kötiden)
+  //etaEl.textContent = totalQueueTime; // Om man vill ha ETA i minuter
+
+  etaEl.textContent = clockTimePlusEta(totalQueueTime); // ger ETA i klocktid (ska använda riktiga kötiden)
   // placeHolderQueue += orderTime; // ska uppdatera totalQueueTime
 }
 
