@@ -7,21 +7,25 @@
 // Alternativ funktionalitet: generera beräknat klockslag när ordern väntas vara klar och spara i local storage ihop med ordern
 
 import { orders } from "../storage/lists.js";
-import { arrFromStorage } from "../storage/localStorage.js";
-import { randomFiveToTen } from "../utility.js";
+import { arrFromStorage, objFromStorage } from "../storage/localStorage.js";
+import { randomInRange } from "../utility.js";
 
-// const orders = arrFromStorage(resturantsOrders);
-// const latestOrder = arrFromStorage(customersOrders)[-1];
-let placeHolderAmount = 3; // Ska ersättas med kundens aktuella MATorder (från localStorage)
-let placeHolderQueue = 12; // Ska ersättas med totalkö
-const queueBefore = countQueue(orders.toRestaurant);
+//const latestOrder = arrFromStorage("previous)[-1]");
+
+let totalQueue = countQueue(orders.toRestaurant);
 const newOrderBtn = document.getElementById("new-order-btn");
 const receiptBtn = document.getElementById("receipt-btn");
 
-function countQueue(orders) {
+// Går igenom kö-arrayen, för varje order-objekt tittar den om typen är wonton och lägger antalet, varpå det totala antalet returneras
+export function countQueue(orders) {
   let courseCount = 0;
-  for (const item of orders) {
-    courseCount += item.courseAmount;
+
+  for (const order of orders) {
+    for (const item of order.items) {
+      if (item.type === "wonton") {
+        courseCount += item.quantity;
+      }
+    }
   }
   return courseCount;
 }
@@ -29,32 +33,32 @@ function countQueue(orders) {
 function addEtaToOrder(amount) {
   let total = 0;
   for (let i = 1; i <= amount; i++) {
-    total += randomFiveToTen();
+    total += randomInRange(2, 5); // lägger på 2-5 minuter per rätt
   }
   return total;
 }
 
 // Skriv ut ordernummer
-export function orderNumberToPage(orderNumber) {
-  document.getElementById("order-number").textContent = orderNumber;
+export function orderNumberToPage(order) {
+  document.getElementById("order-number").textContent = order.orderID;
 }
 
 // Sammanställ och skriv ut ETA
 export function renderEta(orderNumber) {
   const etaEl = document.getElementById("order-eta");
 
-  const orderTime = addEtaToOrder(placeHolderAmount); // argument ska vara orderNumber.numberOfCourses
+  const orderTime = addEtaToOrder(totalQueue); // argument ska vara orderNumber.numberOfCourses
 
   /* etaEl.textContent = orderTime + placeHolderQueue; */ // Om man vill ha ETA i minuter
 
-  etaEl.textContent = clockTimePlusEta(orderTime, placeHolderQueue); // ger ETA i klocktid (ska använda riktiga kötiden)
-  placeHolderQueue += orderTime; // ska uppdatera totalQueueTime
+  etaEl.textContent = clockTimePlusEta(orderTime); // ger ETA i klocktid (ska använda riktiga kötiden)
+  // placeHolderQueue += orderTime; // ska uppdatera totalQueueTime
 }
 
 // Alternativ tidshantering:
-export function clockTimePlusEta(order, queue) {
+export function clockTimePlusEta(itemsInQueue) {
   const date = new Date();
-  const nowPlusMinutes = new Date(date.getTime() + (order + queue) * 60 * 1000);
+  const nowPlusMinutes = new Date(date.getTime() + itemsInQueue * 60 * 1000);
   return nowPlusMinutes.toLocaleTimeString("sv-SE", {
     timeZone: "Europe/Stockholm",
     hour: "2-digit",
