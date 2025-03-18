@@ -50,6 +50,5 @@ export function renderCurrentOrder(current) {
           <button class="button current-order__done-btn" id="done-btn">Avsluta</button>
     `
   );
-  console.log(sumString(orderTotalPrice));
   adminEventListeners();
 }
