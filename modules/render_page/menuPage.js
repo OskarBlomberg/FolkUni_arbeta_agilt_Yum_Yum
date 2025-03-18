@@ -52,7 +52,6 @@ function createFoodItem(menuItem) {
   let itemRef = document.createElement("article");
   itemRef.classList.add("menuItem");
   itemRef.dataset.itemId = menuItem.id;
-  console.log(orders.current); // TODO: Ska hämta aktuella menuItems ID
 
   const menuItemTemp = `
         <div class="menu__Item">
@@ -64,7 +63,7 @@ function createFoodItem(menuItem) {
                 <h3 class="menu__desc">${menuItem.description}</h3>
         <div class="menu__controls">
             <button class="menu__btn menuMinusBtn">-</button>
-            <span class="count" id="count">${orders.current.quantity}</span>
+            <span class="count" id="count">0</span>
             <button class="menu__btn menuPlusBtn">+</button>
         </div>
         <div class="line"></div>
@@ -176,6 +175,7 @@ window.addEventListener("load", () => {
 });
 
 export function updateItemCounts() {
+  orders.current = objFromStorage("currentOrder");
   const countRef = document.querySelectorAll(".count");
 
   countRef.forEach((countElement) => {
