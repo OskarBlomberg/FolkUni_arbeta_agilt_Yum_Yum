@@ -1,3 +1,4 @@
+import { imageCarousel } from "./modules/imageCarousel.js"; 
 import { renderEta } from "./modules/render_page/orderStatus.js";
 import { renderNav } from "./modules/render_page/navBar.js";
 import { updateCartIcon, updateItemCounts } from "./modules/render_page/menuPage.js";
@@ -21,6 +22,7 @@ if (
 } else if (window.location.pathname === "/pages/about-us.html") {
   // Om oss
   console.log("about us");
+  imageCarousel();
 } else if (window.location.pathname === "/pages/admin.html") {
   // Admin
   console.log("admin");

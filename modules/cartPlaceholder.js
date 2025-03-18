@@ -1,13 +1,15 @@
 import { orders } from "../modules/storage/lists.js";
-import { objFromStorage, objToStorage } from "./storage/localStorage.js";
+import { objFromStorage, objToStorage, arrToStorage, arrFromStorage } from "./storage/localStorage.js";
+import { updateItemCounts, updateCartIcon, } from "./render_page/menuPage.js";
 
-
-const orderHistory = orders.previous
+const orderHistory = arrFromStorage("toRestaurant");
 const currentCartItems = objFromStorage("currentOrder");
-const cartItems = Object.values(currentCartItems)
+let cartItems = Object.values(currentCartItems);
+console.log(typeof cartItems);
 
 const orderContainer = document.querySelector('.order-container');
 const totalPriceElement = document.getElementById('total-price');
+console.log(cartItems);
 
 // Prisuppdatering
 function updateTotalPrice() {
@@ -18,25 +20,32 @@ function updateTotalPrice() {
 // Function to update the quantity of an item
 function updateQuantity(index, change) {
     const item = cartItems[index];
+    
+    // Update the item quantity
     item.quantity += change;
 
-    // Remove item from cart if quantity is less than 1
+    // Ensure quantity is at least 1
     if (item.quantity < 1) {
-        cartItems.splice(index, 1); // Remove the item from the cart array
+        // Remove the item from the cart object and from local storage
+        delete currentCartItems[item.id]; 
+        // Save the updated cart to local storage (with item removed)
+        objToStorage(currentCartItems, "currentOrder");
     } else {
-        if (item.quantity < 1) {
-            item.quantity = 1;
-        }
+        // Update local storage if the item quantity is still valid
+        objToStorage(currentCartItems, "currentOrder");
     }
 
-    objToStorage(cartItems, "currentOrder");
     // Re-render the cart and update the total price
     populateCart();
     updateTotalPrice();
+    updateItemCounts();
+    updateCartIcon();
 }
 
 // Function to populate the cart with items and quantity controls
 function populateCart() {
+
+    cartItems = Object.values(currentCartItems);
     let totalPrice = 0;
     
     // Clear current content
@@ -65,6 +74,9 @@ function populateCart() {
         minusButton.classList.add('minus-btn');
         minusButton.textContent = '<';
         minusButton.addEventListener('click', () => updateQuantity(index, -1));
+        
+        console.log(objFromStorage("currentOrder"));
+        
 
         const quantityDisplay = document.createElement('span');
         quantityDisplay.classList.add('quantity-display');
@@ -108,11 +120,15 @@ function populateCart() {
     //uppdatera item counts där det är nödvändigt
     // addItem()
     // removeItem()
-    // updateItemCounts()
+    updateItemCounts()
 }
 
 // Function to handle the "Pay" button click
 function handlePayment() {
+
+    // const saveToRestaurant = objFromStorage("orderHistory") || {}
+    // objToStorage(toRestaurant)
+    
 
     const orderNumber = Date.now();
     // Add current cart to order history
@@ -124,27 +140,27 @@ function handlePayment() {
     }));
 
     // Add order to order history
-    orderHistory.push({
+    let ongoingOrder = {
         orderID: orderNumber,
         items: currentOrder,
         // addOns: addOns, // Tillägg som läsk, såser osv osv
         totalPrice: cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)
-    });
-    console.log(orderHistory)
-    // Disable cart (no further modifications allowed)
-    document.querySelector('.pay-btn').disabled = true;
+    }
+    orderHistory.push(ongoingOrder);
+   
+    arrToStorage(orderHistory, "toRestaurant");
+  
+    
+    // Clear cart
+    objToStorage(ongoingOrder, "placedOrder"); // Empty the cart
 
-    // Push till previous
-    orders.previous.push(currentOrder)
-    // Push till toRestaurant
-    // orderContainer.toRestaurant.push(currentOrder)
-    // Clear cart (optional)
-    cartItems.length = 0; // Empty the cart
-console.log(orders.previous)
-    // Re-render the cart (which will now be empty) and total price
+    localStorage.removeItem("currentOrder");
+
     populateCart();
     updateTotalPrice();
 
+    window.location.href = "/pages/order-status.html";
+    // arrToStorage(currentOrder)
     // Display the completed order (without the ability to change it)
     // displayOrderHistory();
 }

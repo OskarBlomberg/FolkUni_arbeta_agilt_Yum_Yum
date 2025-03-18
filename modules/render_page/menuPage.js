@@ -1,19 +1,23 @@
-import { fetchMenuItems } from '../api.js';
-import { orders } from '../storage/lists.js';
-import { objToStorage, objFromStorage } from '../storage/localStorage.js';
+import { fetchMenuItems } from "../api.js";
+import { orders } from "../storage/lists.js";
+import {
+  objToStorage,
+  objFromStorage,
+  arrToStorage,
+} from "../storage/localStorage.js";
 
 //ladda menyn
-const menuItems = await getMenuItems();
-if (window.location.pathname === '/pages/our-menu.html') {
-	await renderMenuItem(menuItems);
+export const menuItems = await getMenuItems();
+if (window.location.pathname === "/pages/our-menu.html") {
+  await renderMenuItem(menuItems);
 }
 
 //hämta menyArray
-async function getMenuItems() {
-	let response = await fetchMenuItems();
-	// för att komma åt arrayen så används nyckeln items
-	let itemsArray = response.items;
-	return itemsArray;
+export async function getMenuItems() {
+  let response = await fetchMenuItems();
+  // för att komma åt arrayen så används nyckeln items
+  let itemsArray = response.items;
+  return itemsArray;
 }
 
 async function renderMenuItem(menuItems) {
@@ -21,8 +25,8 @@ async function renderMenuItem(menuItems) {
 	const addonsdrinkRef = document.querySelector('#addonsdrink');
 	const addonsdipRef = document.querySelector('#addonsdip');
 
-	for (let item of menuItems) {
-		// console.log(item);
+  for (let item of menuItems) {
+    // console.log(item);
 
 		if (item.type === 'dip' || item.type === 'drink') {
 			createAddonsItem(item);
@@ -217,7 +221,8 @@ window.addEventListener('load', () => {
 });
 
 export function updateItemCounts() {
-	const countRef = document.querySelectorAll('.count');
+  orders.current = objFromStorage("currentOrder");
+  const countRef = document.querySelectorAll(".count");
 
 	countRef.forEach((countElement) => {
 		const itemId = countElement.closest('.menuItem').dataset.itemId;
@@ -230,13 +235,13 @@ export function updateItemCounts() {
 }
 
 function toggleItemInLocalStorage(item, button) {
-	if (orders.current[item.id]) {
-		button.classList.remove('selected');
-		removeFromCart(item);
-	} else {
-		button.classList.add('selected');
-		addToCart(item);
-	}
+  if (orders.current[item.id]) {
+    button.classList.remove("selected");
+    removeFromCart(item);
+  } else {
+    button.classList.add("selected");
+    addToCart(item);
+  }
 }
 
 export function updateCartIcon() {
