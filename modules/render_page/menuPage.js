@@ -1,6 +1,10 @@
 import { fetchMenuItems } from "../api.js";
 import { orders } from "../storage/lists.js";
-import { objToStorage, objFromStorage, arrToStorage } from "../storage/localStorage.js";
+import {
+  objToStorage,
+  objFromStorage,
+  arrToStorage,
+} from "../storage/localStorage.js";
 
 //ladda menyn
 export const menuItems = await getMenuItems();
@@ -48,6 +52,7 @@ function createFoodItem(menuItem) {
   let itemRef = document.createElement("article");
   itemRef.classList.add("menuItem");
   itemRef.dataset.itemId = menuItem.id;
+  console.log(orders.current); // TODO: Ska hämta aktuella menuItems ID
 
   const menuItemTemp = `
         <div class="menu__Item">
@@ -59,7 +64,7 @@ function createFoodItem(menuItem) {
                 <h3 class="menu__desc">${menuItem.description}</h3>
         <div class="menu__controls">
             <button class="menu__btn menuMinusBtn">-</button>
-            <span class="count" id="count">0</span>
+            <span class="count" id="count">${orders.current.quantity}</span>
             <button class="menu__btn menuPlusBtn">+</button>
         </div>
         <div class="line"></div>
@@ -184,13 +189,13 @@ export function updateItemCounts() {
 }
 
 function toggleItemInLocalStorage(item, button) {
-	if(orders.current[item.id]) {
-			button.classList.remove('selected');
-			removeFromCart(item);
-	} else {
-			button.classList.add('selected')
-			addToCart(item);
-	}
+  if (orders.current[item.id]) {
+    button.classList.remove("selected");
+    removeFromCart(item);
+  } else {
+    button.classList.add("selected");
+    addToCart(item);
+  }
 }
 
 // localStorage.clear
