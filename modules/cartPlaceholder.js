@@ -64,7 +64,7 @@ function populateCart() {
 
         const itemPrice = document.createElement('span');
         itemPrice.classList.add('item-price');
-        itemPrice.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
+        itemPrice.textContent = `${(item.price * item.quantity).toFixed(2)} kr`;
 
         // Quantity controls (plus/minus buttons)
         const quantityControls = document.createElement('div');
@@ -110,7 +110,7 @@ function populateCart() {
     
     const totalPriceElement = document.createElement('span');
     totalPriceElement.classList.add('price');
-    totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+    totalPriceElement.textContent = `${totalPrice.toFixed(2)}kr`;
     
     sumElement.appendChild(totalLabel);
     sumElement.appendChild(totalPriceElement);
