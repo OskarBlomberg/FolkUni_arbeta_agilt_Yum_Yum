@@ -22,8 +22,6 @@ async function renderMenuItem(menuItems) {
   const addonsdipRef = document.querySelector("#addonsdip");
 
   for (let item of menuItems) {
-    console.log(item);
-
     if (item.type === "dip" || item.type === "drink") {
       createAddonsItem(item);
     } else {
@@ -184,13 +182,13 @@ export function updateItemCounts() {
 }
 
 function toggleItemInLocalStorage(item, button) {
-	if(orders.current[item.id]) {
-			button.classList.remove('selected');
-			removeFromCart(item);
-	} else {
-			button.classList.add('selected')
-			addToCart(item);
-	}
+  if (orders.current[item.id]) {
+    button.classList.remove("selected");
+    removeFromCart(item);
+  } else {
+    button.classList.add("selected");
+    addToCart(item);
+  }
 }
 
 // localStorage.clear
