@@ -1,6 +1,10 @@
 import { fetchMenuItems } from "../api.js";
 import { orders } from "../storage/lists.js";
-import { objToStorage, objFromStorage, arrToStorage } from "../storage/localStorage.js";
+import {
+  objToStorage,
+  objFromStorage,
+  arrToStorage,
+} from "../storage/localStorage.js";
 
 //ladda menyn
 export const menuItems = await getMenuItems();
@@ -171,6 +175,7 @@ window.addEventListener("load", () => {
 });
 
 export function updateItemCounts() {
+  orders.current = objFromStorage("currentOrder");
   const countRef = document.querySelectorAll(".count");
 
   countRef.forEach((countElement) => {
@@ -184,13 +189,13 @@ export function updateItemCounts() {
 }
 
 function toggleItemInLocalStorage(item, button) {
-	if(orders.current[item.id]) {
-			button.classList.remove('selected');
-			removeFromCart(item);
-	} else {
-			button.classList.add('selected')
-			addToCart(item);
-	}
+  if (orders.current[item.id]) {
+    button.classList.remove("selected");
+    removeFromCart(item);
+  } else {
+    button.classList.add("selected");
+    addToCart(item);
+  }
 }
 
 // localStorage.clear
