@@ -147,6 +147,7 @@ function createAddOnBtn(item) {
 
 	button.addEventListener('click', function () {
 		toggleItemInLocalStorage(item, button);
+		updateCartIcon();
 	});
 	return button;
 }
