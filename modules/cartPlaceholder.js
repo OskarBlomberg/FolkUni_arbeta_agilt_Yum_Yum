@@ -4,11 +4,12 @@ import { updateItemCounts, updateCartIcon, } from "./render_page/menuPage.js";
 
 const orderHistory = arrFromStorage("toRestaurant");
 const currentCartItems = objFromStorage("currentOrder");
-const cartItems = Object.values(currentCartItems);
+let cartItems = Object.values(currentCartItems);
+console.log(typeof cartItems);
 
 const orderContainer = document.querySelector('.order-container');
 const totalPriceElement = document.getElementById('total-price');
-console.log(currentCartItems);
+console.log(cartItems);
 
 // Prisuppdatering
 function updateTotalPrice() {
@@ -20,28 +21,31 @@ function updateTotalPrice() {
 function updateQuantity(index, change) {
     const item = cartItems[index];
     
+    // Update the item quantity
     item.quantity += change;
 
-    // Remove item from cart if quantity is less than 1
+    // Ensure quantity is at least 1
     if (item.quantity < 1) {
-        cartItems.splice(index, 1); // Remove the item from the cart array
+        // Remove the item from the cart object and from local storage
+        delete currentCartItems[item.id]; 
+        // Save the updated cart to local storage (with item removed)
+        objToStorage(currentCartItems, "currentOrder");
     } else {
-        if (item.quantity < 1) {
-            item.quantity = 1;
-        }
+        // Update local storage if the item quantity is still valid
+        objToStorage(currentCartItems, "currentOrder");
     }
 
-    objToStorage(currentCartItems, "currentOrder");
     // Re-render the cart and update the total price
     populateCart();
     updateTotalPrice();
     updateItemCounts();
     updateCartIcon();
-
 }
 
 // Function to populate the cart with items and quantity controls
 function populateCart() {
+
+    cartItems = Object.values(currentCartItems);
     let totalPrice = 0;
     
     // Clear current content
