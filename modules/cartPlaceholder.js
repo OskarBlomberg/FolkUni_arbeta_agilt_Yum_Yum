@@ -138,6 +138,7 @@ function handlePayment() {
   const currentOrder = cartItems.map((item) => ({
     name: item.name,
     quantity: item.quantity,
+    type: item.type,
     price: item.price,
     totalPrice: (item.price * item.quantity).toFixed(2),
   }));
