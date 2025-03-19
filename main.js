@@ -45,8 +45,8 @@ if (
   // Orderstatus
   console.log("order status");
   orders.toRestaurant = arrFromStorage("toRestaurant");
-  const placedOrder = objFromStorage("placedOrder");
-  orderNumberToPage(placedOrder);
+  orders.placedOrder = objFromStorage("placedOrder");
+  orderNumberToPage(orders.placedOrder);
   renderEta();
 } else if (window.location.pathname === "/pages/our-menu.html") {
   // Vår meny

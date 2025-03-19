@@ -78,8 +78,10 @@
 
       <section class="order-main__text-container">
         <h1 class="order-main__heading">Din beställning tillagas</h1>
-        <p class="order-main__eta">
-          Beräknad klar kl. <span id="order-eta"></span>
+        <p class="order-main__eta" id="order-eta">
+          Beräknad klar om
+          <span class="order-main__eta__minutes" id="order-eta__amount"></span>
+          min
         </p>
         <p class="order-main__ordernumber" id="order-number"></p>
       </section>
@@ -92,7 +94,7 @@
           Gör en till beställning
         </a>
         <a
-          href="./pages/receipt.html"
+          href="./receipt.html"
           class="btn-like-link btn-like-link--see-receipt"
         >
           Se kvitto
