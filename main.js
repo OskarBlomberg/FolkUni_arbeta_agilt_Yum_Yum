@@ -1,8 +1,5 @@
 import { imageCarousel } from "./modules/imageCarousel.js";
-import {
-  orderNumberToPage,
-  renderEta,
-} from "./modules/render_page/orderStatus.js";
+import renderOrderStatus from "./modules/render_page/orderStatus.js";
 import { renderNav } from "./modules/render_page/navBar.js";
 import {
   updateCartIcon,
@@ -13,11 +10,6 @@ import {
   renderCurrentOrder,
 } from "./modules/render_page/admin.js";
 import { goToFindUs, goToMenu } from "./modules/utility.js";
-import {
-  arrFromStorage,
-  objFromStorage,
-} from "./modules/storage/localStorage.js";
-import { orders } from "./modules/storage/lists.js";
 
 if (
   window.location.pathname === "/" ||
@@ -44,10 +36,7 @@ if (
 } else if (window.location.pathname === "/pages/order-status.html") {
   // Orderstatus
   console.log("order status");
-  orders.toRestaurant = arrFromStorage("toRestaurant");
-  const placedOrder = objFromStorage("placedOrder");
-  orderNumberToPage(placedOrder);
-  renderEta();
+  renderOrderStatus();
 } else if (window.location.pathname === "/pages/our-menu.html") {
   // Vår meny
   console.log("our menu");
