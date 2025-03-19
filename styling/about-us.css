@@ -9,7 +9,7 @@ main {
     background-color: #206B52;
     border-radius: 7px;
     width: 100%; 
-    height: calc(100vh - 32px);
+    height: calc(90vh - 32px);
     margin: 0;
     padding: 0;
     overflow: auto;
@@ -21,7 +21,7 @@ h2 {
     font-weight: solid 500;
     color: #EEEEEE;
     text-transform: uppercase;
-    padding: 3rem;
+    padding: 1.5rem;
     text-shadow: 1px 3px 0px rgba(0, 0, 0, 0.30);  
 }
 
@@ -32,7 +32,6 @@ h2 {
     align-items: center;
     width: 100%; 
     max-width: 800px; 
-    margin: auto;
 }
 
 .image-carousel img {
@@ -66,7 +65,9 @@ p {
     font-weight: 500;
     color: #EEEEEE;
     font-size: 0.850rem;
-    padding: 20px;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
     flex-wrap: wrap;
+    line-height: 1.5;
 }
 

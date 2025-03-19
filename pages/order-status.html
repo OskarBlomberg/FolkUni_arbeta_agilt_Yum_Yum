@@ -29,7 +29,7 @@
   </head>
   <body>
     <header class="header">
-      <a href="/">
+      <a href="/" title="Gå till startsidan">
         <figure class="icon-container">
           <img
             src="../styling/images/Logo_128x128.png"
@@ -42,13 +42,22 @@
 
       <div class="nav-icons">
         <a href="/pages/cart.html" class="cart-link">
-          <div id="cart-btn" class="cart" tabindex="0">
+          <div
+            id="cart-btn"
+            class="cart"
+            tabindex="0"
+            aria-label="Öppna varukorg"
+          >
             <span class="cart_count">0</span>
             <i class="fa-solid fa-cart-shopping"></i>
           </div>
         </a>
 
-        <div class="hamburger-menu" tabindex="0">
+        <div
+          class="hamburger-menu"
+          tabindex="0"
+          aria-label="Öppna navigationsmeny"
+        >
           <figure class="icon-container">
             <img
               src="../styling/images/Menu_48x48.png"
@@ -78,8 +87,10 @@
 
       <section class="order-main__text-container">
         <h1 class="order-main__heading">Din beställning tillagas</h1>
-        <p class="order-main__eta">
-          Beräknad klar kl. <span id="order-eta"></span>
+        <p class="order-main__eta" id="order-eta">
+          Beräknad klar om
+          <span class="order-main__eta__minutes" id="order-eta__amount"></span>
+          min
         </p>
         <p class="order-main__ordernumber" id="order-number"></p>
       </section>
@@ -92,7 +103,7 @@
           Gör en till beställning
         </a>
         <a
-          href="./pages/receipt.html"
+          href="./receipt.html"
           class="btn-like-link btn-like-link--see-receipt"
         >
           Se kvitto
