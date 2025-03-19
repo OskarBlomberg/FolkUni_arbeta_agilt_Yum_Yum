@@ -10,7 +10,7 @@ import {
 export const menuItems = await getMenuItems();
 if (window.location.pathname === "/pages/our-menu.html") {
 	await renderMenuItem(menuItems);
-} 
+}
 
 //hämta menyArray
 export async function getMenuItems() {
@@ -18,7 +18,7 @@ export async function getMenuItems() {
 	// för att komma åt arrayen så används nyckeln items
 	let itemsArray = response.items;
 	console.log(itemsArray);
-	
+
 	return itemsArray;
 }
 
@@ -40,24 +40,17 @@ async function renderMenuItem(menuItems) {
 			dipRef.appendChild(dipItem);
 		}
 	}
-	
-	const filterSelect = document.querySelector('#menu__filter-options');
-	filterSelect.addEventListener('change', (event) => {
-		const selectedType = event.target.value;
-	
-		filterItems(selectedType);
-	})
-	
-	
-	//   if (item.type === "dip" || item.type === "drink") {
-	//     createAddonsItem(item);
-	//   } else {
-	//     let foodItem = createFoodItem(item);
-	//     menuRef.appendChild(foodItem);
-	//     menuRef.prepend(foodItem);
-	//   }
-	// }
 
+
+	const filterSelect = document.querySelectorAll('.menu__filterBtn');
+	filterSelect.forEach(button => {
+		button.addEventListener('click', (event) => {
+			const selectedType = event.target.dataset.type;
+
+			filterItems(selectedType);
+
+		})
+	})
 	updateItemCounts();
 }
 
@@ -68,33 +61,33 @@ function filterItems(type) {
 	const wontonRef = document.querySelector('#menu__wonton')
 
 	drinkRef.classList.remove('d-none');
-    dipRef.classList.remove('d-none');
-    wontonRef.classList.remove('d-none');
+	dipRef.classList.remove('d-none');
+	wontonRef.classList.remove('d-none');
 
 	menuItemsRef.forEach(item => {
 		const itemType = item.dataset.itemType
 
-		if(type === 'all' || itemType === type) {
+		if (type === 'all' || itemType === type) {
 			item.classList.remove('d-none');
-			if(type === "wonton") {
+			if (type === "wonton") {
 				wontonRef.classList.remove('d-none');
-			} else if(type === "drink") {
+			} else if (type === "drink") {
 				drinkRef.classList.remove('d-none');
 			} else if (type === "dip") {
 				dipRef.classList.remove('d-none');
 			}
 		} else {
 			item.classList.add('d-none')
-			if(type === "wonton") {
+			if (type === "wonton") {
 				dipRef.classList.add('d-none')
 				drinkRef.classList.add('d-none')
-			} else if(type === "drink") {
+			} else if (type === "drink") {
 				dipRef.classList.add('d-none')
 				wontonRef.classList.add('d-none')
 			} else if (type === "dip") {
 				wontonRef.classList.add('d-none')
 				drinkRef.classList.add('d-none')
-			}else {
+			} else {
 
 			}
 		}
