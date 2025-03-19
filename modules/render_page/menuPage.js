@@ -1,65 +1,115 @@
 import { fetchMenuItems } from "../api.js";
 import { orders } from "../storage/lists.js";
 import {
-  objToStorage,
-  objFromStorage,
-  arrToStorage,
+	objToStorage,
+	objFromStorage,
+	arrToStorage,
 } from "../storage/localStorage.js";
 
 //ladda menyn
 export const menuItems = await getMenuItems();
 if (window.location.pathname === "/pages/our-menu.html") {
-  await renderMenuItem(menuItems);
-}
+	await renderMenuItem(menuItems);
+} 
 
 //hämta menyArray
 export async function getMenuItems() {
-  let response = await fetchMenuItems();
-  // för att komma åt arrayen så används nyckeln items
-  let itemsArray = response.items;
-  return itemsArray;
+	let response = await fetchMenuItems();
+	// för att komma åt arrayen så används nyckeln items
+	let itemsArray = response.items;
+	console.log(itemsArray);
+	
+	return itemsArray;
 }
 
 async function renderMenuItem(menuItems) {
-  const menuRef = document.querySelector("#menuItemsContainer");
-  const wontonRef = document.querySelector('#menu__wonton')
-  const drinkRef = document.querySelector('#menu__dricka');
-  const dipRef = document.querySelector('#menu__dip');
-//   const addonsdrinkRef = document.querySelector("#addonsdrink");
-//   const addonsdipRef = document.querySelector("#addonsdip");
+	const menuRef = document.querySelector("#menuItemsContainer");
+	const wontonRef = document.querySelector('#menu__wonton')
+	const drinkRef = document.querySelector('#menu__dricka');
+	const dipRef = document.querySelector('#menu__dip');
 
-  for (let item of menuItems) {
-	if(item.type === "wonton") {
-		let wontonItem = createFoodItem(item);
-		wontonRef.appendChild(wontonItem);
-	} else if(item.type === "drink") {
-		let drinkItem = createFoodItem(item);
-		drinkRef.appendChild(drinkItem);
-	} else {
-		let dipItem = createFoodItem(item);
-		dipRef.appendChild(dipItem);
+	for (let item of menuItems) {
+		if (item.type === "wonton") {
+			let wontonItem = createFoodItem(item);
+			wontonRef.appendChild(wontonItem);
+		} else if (item.type === "drink") {
+			let drinkItem = createFoodItem(item);
+			drinkRef.appendChild(drinkItem);
+		} else {
+			let dipItem = createFoodItem(item);
+			dipRef.appendChild(dipItem);
+		}
 	}
-  }
+	
+	const filterSelect = document.querySelector('#menu__filter-options');
+	filterSelect.addEventListener('change', (event) => {
+		const selectedType = event.target.value;
+	
+		filterItems(selectedType);
+	})
+	
+	
+	//   if (item.type === "dip" || item.type === "drink") {
+	//     createAddonsItem(item);
+	//   } else {
+	//     let foodItem = createFoodItem(item);
+	//     menuRef.appendChild(foodItem);
+	//     menuRef.prepend(foodItem);
+	//   }
+	// }
 
-  //   if (item.type === "dip" || item.type === "drink") {
-  //     createAddonsItem(item);
-  //   } else {
-  //     let foodItem = createFoodItem(item);
-  //     menuRef.appendChild(foodItem);
-  //     menuRef.prepend(foodItem);
-  //   }
-  // }
-
-  updateItemCounts();
+	updateItemCounts();
 }
+
+function filterItems(type) {
+	const menuItemsRef = document.querySelectorAll('.menuItem');
+	const drinkRef = document.querySelector('#menu__dricka');
+	const dipRef = document.querySelector('#menu__dip');
+	const wontonRef = document.querySelector('#menu__wonton')
+
+	drinkRef.classList.remove('d-none');
+    dipRef.classList.remove('d-none');
+    wontonRef.classList.remove('d-none');
+
+	menuItemsRef.forEach(item => {
+		const itemType = item.dataset.itemType
+
+		if(type === 'all' || itemType === type) {
+			item.classList.remove('d-none');
+			if(type === "wonton") {
+				wontonRef.classList.remove('d-none');
+			} else if(type === "drink") {
+				drinkRef.classList.remove('d-none');
+			} else if (type === "dip") {
+				dipRef.classList.remove('d-none');
+			}
+		} else {
+			item.classList.add('d-none')
+			if(type === "wonton") {
+				dipRef.classList.add('d-none')
+				drinkRef.classList.add('d-none')
+			} else if(type === "drink") {
+				dipRef.classList.add('d-none')
+				wontonRef.classList.add('d-none')
+			} else if (type === "dip") {
+				wontonRef.classList.add('d-none')
+				drinkRef.classList.add('d-none')
+			}else {
+
+			}
+		}
+	})
+}
+
 
 //Skapa Item object
 function createFoodItem(menuItem) {
-  let itemRef = document.createElement("article");
-  itemRef.classList.add("menuItem");
-  itemRef.dataset.itemId = menuItem.id;
+	let itemRef = document.createElement("article");
+	itemRef.classList.add("menuItem");
+	itemRef.dataset.itemId = menuItem.id;
+	itemRef.dataset.itemType = menuItem.type;
 
-  const menuItemTemp = `
+	const menuItemTemp = `
         <div class="menu__Item">
             <div class="menu__item-title">
                 <h2 class="menu__name menuText" id="menuName" title="Tryck för att få mer information" tabindex="0">${menuItem.name}</h2>
@@ -75,24 +125,21 @@ function createFoodItem(menuItem) {
         <div class="line"></div>
         </div>
     `;
-  itemRef.innerHTML = menuItemTemp;
+	itemRef.innerHTML = menuItemTemp;
 
-  // handelItemUpdate(itemRef, menuItem)
-  addItem(itemRef, menuItem);
-  removeItem(itemRef, menuItem);
+	// handelItemUpdate(itemRef, menuItem)
+	addItem(itemRef, menuItem);
+	removeItem(itemRef, menuItem);
 
-  return itemRef;
+	return itemRef;
 }
 
 //div som är modal
 const modalItemRef = document.querySelector("#ItemModal");
-//rubrik som man ska klicka på
-
-
 document.querySelectorAll(".menuText").forEach((item) => {
-  item.addEventListener("click", (event) => {
-	openModal(event)
-});
+	item.addEventListener("click", (event) => {
+		openModal(event)
+	});
 
 	item.addEventListener('keydown', (event) => {
 		if (event.key === 'Enter') {
@@ -106,52 +153,50 @@ function openModal(event) {
 	const menuItemElement = event.target.closest(".menuItem");
 	const itemId = menuItemElement.dataset.itemId;
 	const item = menuItems.find((item) => item.id == itemId);
-	
+
 	let IndItem = createIndiviualItems(item);
-	
+
 	modalItemRef.innerHTML = "";
 	modalItemRef.append(IndItem);
 	modalItemRef.classList.add("active");
-	
+
 	const closeBtn = document.querySelector(".close-button");
 	closeBtn.onclick = function () {
-	  modalItemRef.classList.remove("active");
+		modalItemRef.classList.remove("active");
 	};
 
 	closeBtn.addEventListener('keydown', (event) => {
 		if (event.key === 'Enter') {
-		  modalItemRef.classList.remove("active"); // Stäng modalen
+			modalItemRef.classList.remove("active"); // Stäng modalen
 		}
-	  });
+	});
 
 	closeBtn.focus();
-	
+
 	window.onclick = function (event) {
-	  if (event.target == modalItemRef) {
-		modalItemRef.classList.remove("active"); // Ta bort "active" för att dölja modalen
-		console.log("Modal closed by clicking outside");
-	  }
+		if (event.target == modalItemRef) {
+			modalItemRef.classList.remove("active"); // Ta bort "active" för att dölja modalen
+			console.log("Modal closed by clicking outside");
+		}
 	};
 }
 
 function createIndiviualItems(item) {
-  let indItemRef = document.createElement("div");
-  indItemRef.classList.add("modal-content");
+	let indItemRef = document.createElement("div");
+	indItemRef.classList.add("modal-content");
 
-  let IndItemTemp = `
-	<span class="close-button" tabindex="0" aria-label="Stäng beskrivningen om ${
-    item.name
-  }">&times;</span>
+	let IndItemTemp = `
+	<span class="close-button" tabindex="0" aria-label="Stäng beskrivningen om ${item.name
+		}">&times;</span>
 	<div class="modalItem-detail">
-	<figure class="modalItem-figurImg"><img class="modalItem-img" src="../../styling/images/${
-    item.name
-  }.jpg" alt=""></figure>
+	<figure class="modalItem-figurImg"><img class="modalItem-img" src="../../styling/images/${item.name
+		}.jpg" alt=""></figure>
 	<h2 class="modalItem-name">${item.name}</h2>
 	<h3 class="modalItem-price">${item.price} kr</h3>
 	<p class="modalItem-desc">${item.description}</p>
 	<h3 class="modalItem-name">Ingredienser:</h3>
 	`;
-	if(item.ingredients && item.ingredients.length > 0 ) {
+	if (item.ingredients && item.ingredients.length > 0) {
 		IndItemTemp += `<p class="modalItem-ingredients">${item.ingredients.join(", ")}</p>`
 	} else {
 		IndItemTemp += `<p class="modalItem-ingredients">Inga ingredienser tillgängliga</p>`
@@ -161,7 +206,7 @@ function createIndiviualItems(item) {
 
 	indItemRef.innerHTML = IndItemTemp;
 
-  return indItemRef;
+	return indItemRef;
 }
 
 // function createAddonsItem(item) {
@@ -203,82 +248,83 @@ function createIndiviualItems(item) {
 
 //Lägg till i localstorage
 
+
 function addToCart(item) {
-  if (!orders.current[item.id]) {
-    orders.current[item.id] = { ...item, quantity: 1 };
-  } else {
-    orders.current[item.id].quantity++;
-  }
-  objToStorage(orders.current, "currentOrder");
-  console.log(orders.current);
+	if (!orders.current[item.id]) {
+		orders.current[item.id] = { ...item, quantity: 1 };
+	} else {
+		orders.current[item.id].quantity++;
+	}
+	objToStorage(orders.current, "currentOrder");
+	console.log(orders.current);
 }
 
 //ta bort från localstorage
 function removeFromCart(item) {
-  if (orders.current[item.id]) {
-    if (orders.current[item.id].quantity > 1) {
-      orders.current[item.id].quantity--;
-    } else {
-      delete orders.current[item.id];
-    }
-    objToStorage(orders.current, "currentOrder");
-    console.log(orders.current);
-  }
+	if (orders.current[item.id]) {
+		if (orders.current[item.id].quantity > 1) {
+			orders.current[item.id].quantity--;
+		} else {
+			delete orders.current[item.id];
+		}
+		objToStorage(orders.current, "currentOrder");
+		console.log(orders.current);
+	}
 }
 
 //ta bort 1 när man trycker på minusknappen
 function removeItem(itemRef, menuItem) {
-  const minusButton = itemRef.querySelector(".menuMinusBtn");
+	const minusButton = itemRef.querySelector(".menuMinusBtn");
 
-  minusButton.addEventListener("click", () => {
-    removeFromCart(menuItem);
-    updateItemCounts();
-    updateCartIcon();
-  });
+	minusButton.addEventListener("click", () => {
+		removeFromCart(menuItem);
+		updateItemCounts();
+		updateCartIcon();
+	});
 }
 
 //adderar 1 när man trycker på plusknappen
 function addItem(itemRef, menuItem) {
-  const plusButton = itemRef.querySelector(".menuPlusBtn");
+	const plusButton = itemRef.querySelector(".menuPlusBtn");
 
-  plusButton.addEventListener("click", () => {
-    addToCart(menuItem); // Lägg till objektet i kundvagnen
-    updateItemCounts(); // Uppdatera alla count-element på sidan
-    updateCartIcon();
-  });
+	plusButton.addEventListener("click", () => {
+		addToCart(menuItem); // Lägg till objektet i kundvagnen
+		updateItemCounts(); // Uppdatera alla count-element på sidan
+		updateCartIcon();
+	});
 }
 
 window.addEventListener("load", () => {
-  const saveOrder = objFromStorage("currentOrder");
-  orders.current = saveOrder;
-  updateItemCounts();
+	const saveOrder = objFromStorage("currentOrder");
+	orders.current = saveOrder;
+	updateItemCounts();
 
-  for (let key in orders.current) {
-    let item = orders.current[key];
-    let button = document.querySelector(`button[data-id='${item.id}']`);
-    if (button) {
-      button.classList.add("selected");
-    }
-  }
+	for (let key in orders.current) {
+		let item = orders.current[key];
+		let button = document.querySelector(`button[data-id='${item.id}']`);
+		if (button) {
+			button.classList.add("selected");
+		}
+	}
 });
 
 export function updateItemCounts() {
-  orders.current = objFromStorage("currentOrder");
-  const countRef = document.querySelectorAll(".count");
+	orders.current = objFromStorage("currentOrder");
+	const countRef = document.querySelectorAll(".count");
 
-  countRef.forEach((countElement) => {
-    const itemId = countElement.closest(".menuItem").dataset.itemId;
-    const itemCount = orders.current[itemId]
-      ? orders.current[itemId].quantity
-      : 0;
+	countRef.forEach((countElement) => {
+		const itemId = countElement.closest(".menuItem").dataset.itemId;
+		const itemCount = orders.current[itemId]
+			? orders.current[itemId].quantity
+			: 0;
 
-    countElement.textContent = itemCount;
-  });
+		countElement.textContent = itemCount;
+	});
 }
 
 // function toggleItemInLocalStorage(item, button) {
 //   if (orders.current[item.id]) {
-    // button.classList.remove("selected");
+// button.classList.remove("selected");
 //     removeFromCart(item);
 //   } else {
 //     button.classList.add("selected");
@@ -287,30 +333,30 @@ export function updateItemCounts() {
 // }
 
 export function updateCartIcon() {
-  //henter den lagrede ordren fra localstorage
-  const savedOrder = objFromStorage("currentOrder") || {};
-  // console.log("Saved Order:", savedOrder); //logger eventuelle bugger
+	//henter den lagrede ordren fra localstorage
+	const savedOrder = objFromStorage("currentOrder") || {};
+	// console.log("Saved Order:", savedOrder); //logger eventuelle bugger
 
-  //Beregner totalt antall varer i ordren
-  const itemCount = Object.values(savedOrder).reduce((sum, item) => {
-    // Sjekker om varen og antallet er gyldig
-    if (item && item.quantity) {
-      return sum + item.quantity; //legger til antall
-    }
-    return sum;
-  }, 0);
+	//Beregner totalt antall varer i ordren
+	const itemCount = Object.values(savedOrder).reduce((sum, item) => {
+		// Sjekker om varen og antallet er gyldig
+		if (item && item.quantity) {
+			return sum + item.quantity; //legger til antall
+		}
+		return sum;
+	}, 0);
 
-  const cartElement = document.querySelector(".cart");
-  const countElement = document.querySelector(".cart_count");
+	const cartElement = document.querySelector(".cart");
+	const countElement = document.querySelector(".cart_count");
 
-  // console.log("Item Count:", itemCount); //Sjekker antallet i handlekurv
-  countElement.textContent = itemCount; // Oppdaterer antallet som vises
+	// console.log("Item Count:", itemCount); //Sjekker antallet i handlekurv
+	countElement.textContent = itemCount; // Oppdaterer antallet som vises
 
-  //Gjør at handlekurven skjules om den er tom og vises om ligger noe i den
-  if (itemCount === 0) {
-    cartElement.style.display = "none";
-  } else {
-    cartElement.style.display = "flex";
-    countElement.style.display = "flex";
-  }
+	//Gjør at handlekurven skjules om den er tom og vises om ligger noe i den
+	if (itemCount === 0) {
+		cartElement.style.display = "none";
+	} else {
+		cartElement.style.display = "flex";
+		countElement.style.display = "flex";
+	}
 }
