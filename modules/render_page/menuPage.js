@@ -22,20 +22,23 @@ export async function getMenuItems() {
 
 async function renderMenuItem(menuItems) {
   const menuRef = document.querySelector("#menuItemsContainer");
-  const addonsdrinkRef = document.querySelector("#addonsdrink");
-  const addonsdipRef = document.querySelector("#addonsdip");
+//   const addonsdrinkRef = document.querySelector("#addonsdrink");
+//   const addonsdipRef = document.querySelector("#addonsdip");
 
   for (let item of menuItems) {
-    // console.log(item);
-
-    if (item.type === "dip" || item.type === "drink") {
-      createAddonsItem(item);
-    } else {
-      let foodItem = createFoodItem(item);
-      menuRef.appendChild(foodItem);
-      menuRef.prepend(foodItem);
-    }
+    let foodItem = createFoodItem(item);
+    menuRef.appendChild(foodItem);
+    // menuRef.prepend(foodItem);
   }
+
+  //   if (item.type === "dip" || item.type === "drink") {
+  //     createAddonsItem(item);
+  //   } else {
+  //     let foodItem = createFoodItem(item);
+  //     menuRef.appendChild(foodItem);
+  //     menuRef.prepend(foodItem);
+  //   }
+  // }
 
   updateItemCounts();
 }
@@ -125,33 +128,33 @@ function createIndiviualItems(item) {
   return indItemRef;
 }
 
-function createAddonsItem(item) {
-  const addonsdrinkRef = document.querySelector("#addonsdrink");
-  const addonsdipRef = document.querySelector("#addonsdip");
+// function createAddonsItem(item) {
+//   const addonsdrinkRef = document.querySelector("#addonsdrink");
+//   const addonsdipRef = document.querySelector("#addonsdip");
 
-  if (item.type === "drink") {
-    let button = createAddOnBtn(item);
-    addonsdrinkRef.appendChild(button);
-  } else if (item.type === "dip") {
-    let button = createAddOnBtn(item);
-    addonsdipRef.appendChild(button);
-  }
+//   if (item.type === "drink") {
+//     let button = createAddOnBtn(item);
+//     addonsdrinkRef.appendChild(button);
+//   } else if (item.type === "dip") {
+//     let button = createAddOnBtn(item);
+//     addonsdipRef.appendChild(button);
+//   }
 
-  return addonsdipRef;
-}
+//   return addonsdipRef;
+// }
 
-function createAddOnBtn(item) {
-  const button = document.createElement("button");
-  button.textContent = item.name;
-  button.classList.add("menu__addonBtn");
-  button.setAttribute("data-id", item.id);
+// function createAddOnBtn(item) {
+//   const button = document.createElement("button");
+//   button.textContent = item.name;
+//   button.classList.add("menu__addonBtn");
+//   button.setAttribute("data-id", item.id);
 
-  button.addEventListener("click", function () {
-    toggleItemInLocalStorage(item, button);
-    updateCartIcon();
-  });
-  return button;
-}
+//   button.addEventListener("click", function () {
+//     toggleItemInLocalStorage(item, button);
+//     updateCartIcon();
+//   });
+//   return button;
+// }
 
 // function createAddOnPrice(Item) {
 // 	const price = document.createElement('p');
@@ -236,15 +239,15 @@ export function updateItemCounts() {
   });
 }
 
-function toggleItemInLocalStorage(item, button) {
-  if (orders.current[item.id]) {
-    button.classList.remove("selected");
-    removeFromCart(item);
-  } else {
-    button.classList.add("selected");
-    addToCart(item);
-  }
-}
+// function toggleItemInLocalStorage(item, button) {
+//   if (orders.current[item.id]) {
+//     button.classList.remove("selected");
+//     removeFromCart(item);
+//   } else {
+//     button.classList.add("selected");
+//     addToCart(item);
+//   }
+// }
 
 export function updateCartIcon() {
   //henter den lagrede ordren fra localstorage
