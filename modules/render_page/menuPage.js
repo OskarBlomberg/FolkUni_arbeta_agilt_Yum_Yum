@@ -22,13 +22,23 @@ export async function getMenuItems() {
 
 async function renderMenuItem(menuItems) {
   const menuRef = document.querySelector("#menuItemsContainer");
+  const wontonRef = document.querySelector('#menu__wonton')
+  const drinkRef = document.querySelector('#menu__dricka');
+  const dipRef = document.querySelector('#menu__dip');
 //   const addonsdrinkRef = document.querySelector("#addonsdrink");
 //   const addonsdipRef = document.querySelector("#addonsdip");
 
   for (let item of menuItems) {
-    let foodItem = createFoodItem(item);
-    menuRef.appendChild(foodItem);
-    // menuRef.prepend(foodItem);
+	if(item.type === "wonton") {
+		let wontonItem = createFoodItem(item);
+		wontonRef.appendChild(wontonItem);
+	} else if(item.type === "drink") {
+		let drinkItem = createFoodItem(item);
+		drinkRef.appendChild(drinkItem);
+	} else {
+		let dipItem = createFoodItem(item);
+		dipRef.appendChild(dipItem);
+	}
   }
 
   //   if (item.type === "dip" || item.type === "drink") {
@@ -77,39 +87,59 @@ function createFoodItem(menuItem) {
 //div som är modal
 const modalItemRef = document.querySelector("#ItemModal");
 //rubrik som man ska klicka på
+
+
 document.querySelectorAll(".menuText").forEach((item) => {
   item.addEventListener("click", (event) => {
-    event.preventDefault();
-    const menuItemElement = event.target.closest(".menuItem");
-    const itemId = menuItemElement.dataset.itemId;
-    const item = menuItems.find((item) => item.id == itemId);
-
-    let IndItem = createIndiviualItems(item);
-
-    modalItemRef.innerHTML = "";
-    modalItemRef.append(IndItem);
-    modalItemRef.classList.add("active");
-
-    const closeBtn = document.querySelector(".close-button");
-    closeBtn.onclick = function () {
-      modalItemRef.classList.remove("active");
-    };
-
-    window.onclick = function (event) {
-      if (event.target == modalItemRef) {
-        modalItemRef.classList.remove("active"); // Ta bort "active" för att dölja modalen
-        console.log("Modal closed by clicking outside");
-      }
-    };
-  });
+	openModal(event)
 });
+
+	item.addEventListener('keydown', (event) => {
+		if (event.key === 'Enter') {
+			console.log('Enter key was pressed');
+			openModal(event)
+		}
+	})
+});
+
+function openModal(event) {
+	const menuItemElement = event.target.closest(".menuItem");
+	const itemId = menuItemElement.dataset.itemId;
+	const item = menuItems.find((item) => item.id == itemId);
+	
+	let IndItem = createIndiviualItems(item);
+	
+	modalItemRef.innerHTML = "";
+	modalItemRef.append(IndItem);
+	modalItemRef.classList.add("active");
+	
+	const closeBtn = document.querySelector(".close-button");
+	closeBtn.onclick = function () {
+	  modalItemRef.classList.remove("active");
+	};
+
+	closeBtn.addEventListener('keydown', (event) => {
+		if (event.key === 'Enter') {
+		  modalItemRef.classList.remove("active"); // Stäng modalen
+		}
+	  });
+
+	closeBtn.focus();
+	
+	window.onclick = function (event) {
+	  if (event.target == modalItemRef) {
+		modalItemRef.classList.remove("active"); // Ta bort "active" för att dölja modalen
+		console.log("Modal closed by clicking outside");
+	  }
+	};
+}
 
 function createIndiviualItems(item) {
   let indItemRef = document.createElement("div");
   indItemRef.classList.add("modal-content");
 
-  const IndItemTemp = `
-	<span class="close-button" aria-label="Stäng beskrivningen om ${
+  let IndItemTemp = `
+	<span class="close-button" tabindex="0" aria-label="Stäng beskrivningen om ${
     item.name
   }">&times;</span>
 	<div class="modalItem-detail">
@@ -120,10 +150,16 @@ function createIndiviualItems(item) {
 	<h3 class="modalItem-price">${item.price} kr</h3>
 	<p class="modalItem-desc">${item.description}</p>
 	<h3 class="modalItem-name">Ingredienser:</h3>
-	<p class="modalItem-ingredients">${item.ingredients.join(", ")}</p>		
-	</div>
-  `;
-  indItemRef.innerHTML = IndItemTemp;
+	`;
+	if(item.ingredients && item.ingredients.length > 0 ) {
+		IndItemTemp += `<p class="modalItem-ingredients">${item.ingredients.join(", ")}</p>`
+	} else {
+		IndItemTemp += `<p class="modalItem-ingredients">Inga ingredienser tillgängliga</p>`
+	}
+
+	IndItemTemp += `</div>`
+
+	indItemRef.innerHTML = IndItemTemp;
 
   return indItemRef;
 }
@@ -166,6 +202,7 @@ function createIndiviualItems(item) {
 // }
 
 //Lägg till i localstorage
+
 function addToCart(item) {
   if (!orders.current[item.id]) {
     orders.current[item.id] = { ...item, quantity: 1 };
@@ -241,7 +278,7 @@ export function updateItemCounts() {
 
 // function toggleItemInLocalStorage(item, button) {
 //   if (orders.current[item.id]) {
-//     button.classList.remove("selected");
+    // button.classList.remove("selected");
 //     removeFromCart(item);
 //   } else {
 //     button.classList.add("selected");
