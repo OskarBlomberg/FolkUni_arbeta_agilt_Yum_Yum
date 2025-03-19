@@ -20,6 +20,10 @@ img {
   display: block;
 }
 
+img:not([alt]) {
+  border: 10px solid red;
+}
+
 a {
   text-decoration: none;
 }
