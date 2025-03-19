@@ -18,7 +18,7 @@
 
 .placeholder__item-element {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     margin-right: 1rem;
     padding: 1rem;
@@ -39,17 +39,17 @@
 
 .quantity-controls {
     display: flex;
-    width: 5rem;
+    width: 6rem;
     height: 2rem;
-    margin-left: 1rem;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
 .quantity-controls button {
     font-family: "Fira Sans", sans-serif;
     color: var(--TEXT-LIGHT);
-    background-color: var(--TEXT-DARK);
+    background-color: #353131;
+    /* background-color: var(--TEXT-DARK); */
     border: none;
     width: 1.5rem;
     height: 1.4rem;
@@ -65,8 +65,12 @@
 }
 
 .item-price {
-    display: flex;
-    align-self: end;
+    width: 3rem;
+    text-align: right;
+}
+
+.item-name {
+    flex-grow: 1;
 }
 
 .pay-btn {
