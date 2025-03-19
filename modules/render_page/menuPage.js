@@ -49,15 +49,15 @@ function createFoodItem(menuItem) {
   const menuItemTemp = `
         <div class="menu__Item">
             <div class="menu__item-title">
-                <h2 class="menu__name" id="menuName">${menuItem.name}</h2>
+                <h2 class="menu__name menuText" id="menuName" title="Tryck för att få mer information" tabindex="0">${menuItem.name}</h2>
 
                 <h2 class="menu__price">${menuItem.price} kr</h2>
             </div>
-                <h3 class="menu__desc">${menuItem.description}</h3>
+                <h3 class="menu__desc menuText">${menuItem.description}</h3>
         <div class="menu__controls">
-            <button class="menu__btn menuMinusBtn">-</button>
+            <button class="menu__btn menuMinusBtn" aria-label="Ta bort till 1 ${menuItem.name}">-</button>
             <span class="count" id="count">0</span>
-            <button class="menu__btn menuPlusBtn">+</button>
+            <button class="menu__btn menuPlusBtn" aria-label="Lägg till 1 ${menuItem.name}">+</button>
         </div>
         <div class="line"></div>
         </div>
@@ -74,7 +74,7 @@ function createFoodItem(menuItem) {
 //div som är modal
 const modalItemRef = document.querySelector("#ItemModal");
 //rubrik som man ska klicka på
-document.querySelectorAll("#menuName").forEach((item) => {
+document.querySelectorAll(".menuText").forEach((item) => {
   item.addEventListener("click", (event) => {
     event.preventDefault();
     const menuItemElement = event.target.closest(".menuItem");
@@ -106,7 +106,9 @@ function createIndiviualItems(item) {
   indItemRef.classList.add("modal-content");
 
   const IndItemTemp = `
-	<span class="close-button">&times;</span>
+	<span class="close-button" aria-label="Stäng beskrivningen om ${
+    item.name
+  }">&times;</span>
 	<div class="modalItem-detail">
 	<figure class="modalItem-figurImg"><img class="modalItem-img" src="../../styling/images/${
     item.name
@@ -151,14 +153,14 @@ function createAddOnBtn(item) {
   return button;
 }
 
-function createAddOnPrice(Item) {
-  const price = document.createElement("p");
-  price.textContent = Item.price;
-  price.classList.add("menu__addons-text");
-  price.classList.add("addonPrice");
+// function createAddOnPrice(Item) {
+// 	const price = document.createElement('p');
+// 	price.textContent = Item.price;
+// 	price.classList.add('menu__addons-text');
+// 	price.classList.add('addonPrice');
 
-  return price;
-}
+// 	return price;
+// }
 
 //Lägg till i localstorage
 function addToCart(item) {
