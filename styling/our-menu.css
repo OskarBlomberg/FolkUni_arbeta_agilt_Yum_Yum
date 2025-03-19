@@ -38,8 +38,18 @@ body {
 .menu__Item {
   font-family: "Fira Sans", sans-serif;
   color: var(--TEXT-LIGHT);
-  padding: 0.5rem;
+  padding-top: 0.5rem;
+  padding-right: 0.5rem;
   text-shadow: var(--TEXT-SHADOW)
+}
+
+.menu__rubriktext {
+  font-family: "Fira Sans", sans-serif;
+  color: var(--TEXT-LIGHT);
+  text-shadow: var(--TEXT-SHADOW);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
 }
 
 .menu__item-title {
@@ -80,24 +90,25 @@ body {
 }
 
 .line {
-  margin-top: 1rem;
-  border: 1px dotted #35313140;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px dotted #35313150;
 }
 
-.addons-container {
+/* .addons-container {
   font-family: "Fira Sans", sans-serif;
   color: var(--TEXT-LIGHT);
   font-size: 1.2rem;
   margin: 0.5rem;
   font-weight: 700;
-}
+} */
 
-.menu__addons-text {
+/* .menu__addons-text {
   display: flex;
   justify-content: space-between;
-}
+} */
 
-.menu__addonBtn {
+/* .menu__addonBtn {
   font-family: "Fira Sans", sans-serif;
   color: var(--TEXT-LIGHT);
   background-color: var(--TEXT-DARK);
@@ -107,7 +118,7 @@ body {
   border-radius: 6px;
   width: fit-content;
   height: 2rem;
-}
+} */
 
 .selected {
   background-color: var(--BACKDROP-COLOUR);
