@@ -6,6 +6,10 @@ import { createReceiptOverlay } from "./receipt.js";
 export default function renderOrderStatus() {
   orders.toRestaurant = arrFromStorage("toRestaurant");
   orders.placedOrder = objFromStorage("placedOrder");
+  const receiptBtn = document.getElementById("receipt-btn");
+  receiptBtn.addEventListener("click", () => {
+    createReceiptOverlay();
+  });
   orderNumberToPage(orders.placedOrder);
   renderEta();
 }
@@ -13,10 +17,6 @@ export default function renderOrderStatus() {
 //const latestOrder = arrFromStorage("previous)[-1]");
 
 let totalQueue = countQueue(orders.toRestaurant);
-const receiptBtn = document.getElementById("receipt-btn");
-receiptBtn.addEventListener("click", () => {
-  createReceiptOverlay();
-});
 
 // Går igenom kö-arrayen, för varje order-objekt tittar den om typen är wonton och lägger antalet, varpå det totala antalet returneras
 export function countQueue(orders) {
