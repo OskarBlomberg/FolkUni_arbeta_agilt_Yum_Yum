@@ -28,7 +28,7 @@
 
   <body>
     <header class="header">
-      <a href="/">
+      <a href="/" title="Gå till startsidan">
         <figure class="icon-container">
           <img
             src="../styling/images/Logo_128x128.png"
@@ -40,14 +40,14 @@
       ></a>
 
       <div class="nav-icons">
-        <a href="./pages/cart.html" class="cart-link">
-          <div id="cart-btn" class="cart" tabindex="0">
+        <a href="/pages/cart.html" class="cart-link">
+          <div id="cart-btn" class="cart" tabindex="0" aria-label="Öppna varukorg">
             <span class="cart_count">0</span>
             <i class="fa-solid fa-cart-shopping"></i>
           </div>
         </a>
 
-        <div class="hamburger-menu" tabindex="0">
+        <div class="hamburger-menu" tabindex="0" aria-label="Öppna navigationsmeny">
           <figure class="icon-container">
             <img
               src="../styling/images/Menu_48x48.png"
@@ -68,10 +68,10 @@
       <section class="container">
         <h2>About us</h2>
         <div class="image-carousel">
-          <span class="material-icons" id="arrow_back" data-direction="left"
+          <span class="material-icons" id="arrow_back" data-direction="left" tabindex="0"
             >arrow_back_ios</span
           >
-          <span class="material-icons" id="arrow_forward" data-direction="right"
+          <span class="material-icons" id="arrow_forward" data-direction="right" tabindex="0"
             >arrow_forward_ios</span
           >
           <img
@@ -88,8 +88,7 @@
         <p>
           Lorzxem ipsum dolor sit amet consectetur adipisicing elit. Quas,
           sapiente aspernatur consectetur quibusdam quo minima dicta doloribus
-          ratione architecto quam laudantium autem. Quia alias fugiat minus nemo
-          consequatur temporibus ratione?
+          ratione architecto quam laudantium autem. 
         </p>
       </section>
     </main>

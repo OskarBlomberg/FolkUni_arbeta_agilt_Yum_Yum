@@ -1,9 +1,21 @@
 export function imageCarousel() {
     const images = [
-        "https://images.unsplash.com/photo-1666278170490-2b2a71939340?q=80&w=2338&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://plus.unsplash.com/premium_photo-1686538381343-ff6de76c8712?q=80&w=2342&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=2338&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "https://plus.unsplash.com/premium_photo-1683141382715-668a4e0a615d?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        {
+            src: "https://images.unsplash.com/photo-1666278170490-2b2a71939340?q=80&w=2338&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            alt: "Wontons i en skål"
+        },
+        {
+            src: "https://plus.unsplash.com/premium_photo-1686538381343-ff6de76c8712?q=80&w=2342&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            alt: "Person serverar olika wontons i en pappskål från en matvagn."
+        },
+        {
+            src: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=2338&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            alt: "Tre tallrikar med tre olika rätter."
+        },
+        {
+            src: "https://plus.unsplash.com/premium_photo-1683141382715-668a4e0a615d?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            alt: "Man och kvinna serverar mat från en matvagn."
+        }
     ];
 
     let currentIndex = 0;
@@ -13,7 +25,8 @@ export function imageCarousel() {
     // Gjør at bildene endres når man klikker på pilene
     function changeImage(direction) {
         currentIndex = direction === "right" ? (currentIndex + 1) % images.length : (currentIndex - 1 + images.length) % images.length;
-        imageElement.src = images[currentIndex];
+        imageElement.src = images[currentIndex].src;
+        imageElement.alt = images[currentIndex].alt;
     }
 
     //legger til eventlisteners på pilene
@@ -24,5 +37,6 @@ export function imageCarousel() {
     });
 
     // Vis første bilde ved oppstart
-    imageElement.src = images[currentIndex];
+    imageElement.src = images[currentIndex].src;
+    imageElement.alt = images[currentIndex].alt;
 }
