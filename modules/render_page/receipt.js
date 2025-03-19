@@ -31,7 +31,7 @@ console.log(placedOrder);
     const receiptItems = document.createElement('li');
     placedOrder.items.forEach(item => {
         const listItem = document.createElement('li');
-        listItem.innerText = `${item.name} - $${item.price.toFixed(2)}`;
+        listItem.innerText = `${item.name} - ${item.price.toFixed(2)}kr`;
         receiptItems.appendChild(listItem);
     });
     receiptContent.appendChild(receiptItems);
