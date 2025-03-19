@@ -1,5 +1,7 @@
 import { imageCarousel } from "./modules/imageCarousel.js";
-import renderOrderStatus from "./modules/render_page/orderStatus.js";
+import renderOrderStatus, {
+  startEtaInterval,
+} from "./modules/render_page/orderStatus.js";
 import { renderNav } from "./modules/render_page/navBar.js";
 import {
   updateCartIcon,
@@ -37,6 +39,7 @@ if (
   // Orderstatus
   console.log("order status");
   renderOrderStatus();
+  startEtaInterval();
 } else if (window.location.pathname === "/pages/our-menu.html") {
   // Vår meny
   console.log("our menu");

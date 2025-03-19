@@ -1,15 +1,10 @@
 import { orders } from "../storage/lists.js";
 import { arrFromStorage, objFromStorage } from "../storage/localStorage.js";
 import { randomInRange } from "../utility.js";
-import { createReceiptOverlay } from "./receipt.js";
 
 export default function renderOrderStatus() {
   orders.toRestaurant = arrFromStorage("toRestaurant");
   orders.placedOrder = objFromStorage("placedOrder");
-  const receiptBtn = document.getElementById("receipt-btn");
-  receiptBtn.addEventListener("click", () => {
-    createReceiptOverlay();
-  });
   orderNumberToPage(orders.placedOrder);
   renderEta();
 }
@@ -17,6 +12,24 @@ export default function renderOrderStatus() {
 //const latestOrder = arrFromStorage("previous)[-1]");
 
 let totalQueue = countQueue(orders.toRestaurant);
+let etaInterval;
+
+export function startEtaInterval() {
+  if (!etaInterval) {
+    etaInterval = setInterval(() => {
+      if (window.location.pathname === "/pages/order-status.html") {
+        renderEta();
+      } else {
+        clearEtaInterval();
+      }
+    }, 60000);
+  }
+}
+
+export function clearEtaInterval() {
+  clearInterval(etaInterval);
+  etaInterval = null;
+}
 
 // Går igenom kö-arrayen, för varje order-objekt tittar den om typen är wonton och lägger antalet, varpå det totala antalet returneras
 export function countQueue(orders) {
