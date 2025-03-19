@@ -37,13 +37,6 @@ async function renderMenuItem(menuItems) {
     }
   }
 
-  // if (!addonsdrinkRef.querySelector('.addonPrice')) {
-  // 	addonsdrinkRef.prepend(createAddOnPrice(menuItems.find(item => item.type === 'drink')));
-  // }
-  // if (!addonsdipRef.querySelector('.addonPrice')) {
-  // 	addonsdipRef.prepend(createAddOnPrice(menuItems.find(item => item.type === 'dip')));
-  // }
-
   updateItemCounts();
 }
 
@@ -56,15 +49,15 @@ function createFoodItem(menuItem) {
   const menuItemTemp = `
         <div class="menu__Item">
             <div class="menu__item-title">
-                <h2 class="menu__name">${menuItem.name}</h2>
+                <h2 class="menu__name menuText" id="menuName" title="Tryck för att få mer information" tabindex="0">${menuItem.name}</h2>
 
                 <h2 class="menu__price">${menuItem.price} kr</h2>
             </div>
-                <h3 class="menu__desc">${menuItem.description}</h3>
+                <h3 class="menu__desc menuText">${menuItem.description}</h3>
         <div class="menu__controls">
-            <button class="menu__btn menuMinusBtn">-</button>
+            <button class="menu__btn menuMinusBtn" aria-label="Ta bort till 1 ${menuItem.name}">-</button>
             <span class="count" id="count">0</span>
-            <button class="menu__btn menuPlusBtn">+</button>
+            <button class="menu__btn menuPlusBtn" aria-label="Lägg till 1 ${menuItem.name}">+</button>
         </div>
         <div class="line"></div>
         </div>
@@ -76,6 +69,60 @@ function createFoodItem(menuItem) {
   removeItem(itemRef, menuItem);
 
   return itemRef;
+}
+
+//div som är modal
+const modalItemRef = document.querySelector("#ItemModal");
+//rubrik som man ska klicka på
+document.querySelectorAll(".menuText").forEach((item) => {
+  item.addEventListener("click", (event) => {
+    event.preventDefault();
+    const menuItemElement = event.target.closest(".menuItem");
+    const itemId = menuItemElement.dataset.itemId;
+    const item = menuItems.find((item) => item.id == itemId);
+
+    let IndItem = createIndiviualItems(item);
+
+    modalItemRef.innerHTML = "";
+    modalItemRef.append(IndItem);
+    modalItemRef.classList.add("active");
+
+    const closeBtn = document.querySelector(".close-button");
+    closeBtn.onclick = function () {
+      modalItemRef.classList.remove("active");
+    };
+
+    window.onclick = function (event) {
+      if (event.target == modalItemRef) {
+        modalItemRef.classList.remove("active"); // Ta bort "active" för att dölja modalen
+        console.log("Modal closed by clicking outside");
+      }
+    };
+  });
+});
+
+function createIndiviualItems(item) {
+  let indItemRef = document.createElement("div");
+  indItemRef.classList.add("modal-content");
+
+  const IndItemTemp = `
+	<span class="close-button" aria-label="Stäng beskrivningen om ${
+    item.name
+  }">&times;</span>
+	<div class="modalItem-detail">
+	<figure class="modalItem-figurImg"><img class="modalItem-img" src="../../styling/images/${
+    item.name
+  }.jpg" alt=""></figure>
+	<h2 class="modalItem-name">${item.name}</h2>
+	<h3 class="modalItem-price">${item.price} kr</h3>
+	<p class="modalItem-desc">${item.description}</p>
+	<h3 class="modalItem-name">Ingredienser:</h3>
+	<p class="modalItem-ingredients">${item.ingredients.join(", ")}</p>		
+	</div>
+  `;
+  indItemRef.innerHTML = IndItemTemp;
+
+  return indItemRef;
 }
 
 function createAddonsItem(item) {
@@ -101,18 +148,19 @@ function createAddOnBtn(item) {
 
   button.addEventListener("click", function () {
     toggleItemInLocalStorage(item, button);
+    updateCartIcon();
   });
   return button;
 }
 
-function createAddOnPrice(Item) {
-  const price = document.createElement("p");
-  price.textContent = Item.price;
-  price.classList.add("menu__addons-text");
-  price.classList.add("addonPrice");
+// function createAddOnPrice(Item) {
+// 	const price = document.createElement('p');
+// 	price.textContent = Item.price;
+// 	price.classList.add('menu__addons-text');
+// 	price.classList.add('addonPrice');
 
-  return price;
-}
+// 	return price;
+// }
 
 //Lägg till i localstorage
 function addToCart(item) {
@@ -198,12 +246,10 @@ function toggleItemInLocalStorage(item, button) {
   }
 }
 
-// localStorage.clear
-
 export function updateCartIcon() {
   //henter den lagrede ordren fra localstorage
   const savedOrder = objFromStorage("currentOrder") || {};
-  console.log("Saved Order:", savedOrder); //logger eventuelle bugger
+  // console.log("Saved Order:", savedOrder); //logger eventuelle bugger
 
   //Beregner totalt antall varer i ordren
   const itemCount = Object.values(savedOrder).reduce((sum, item) => {
@@ -217,7 +263,7 @@ export function updateCartIcon() {
   const cartElement = document.querySelector(".cart");
   const countElement = document.querySelector(".cart_count");
 
-  console.log("Item Count:", itemCount); //Sjekker antallet i handlekurv
+  // console.log("Item Count:", itemCount); //Sjekker antallet i handlekurv
   countElement.textContent = itemCount; // Oppdaterer antallet som vises
 
   //Gjør at handlekurven skjules om den er tom og vises om ligger noe i den

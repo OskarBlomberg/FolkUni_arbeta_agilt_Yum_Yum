@@ -1,3 +1,11 @@
+* {
+    --HIGHLIGHT: #df4a4a;
+    --BG-DARK: #206b52;
+    --BACKDROP-COLOUR: #caebcb;
+    --TEXT-LIGHT: #f4f3f1;
+    --DROP-SHADOW: 0 0 16px;
+    --TEXT-DARK: #353131;
+  }
 
 .order-container {
     display: flex;
@@ -41,6 +49,7 @@
     font-family: "Fira Sans", sans-serif;
     color: var(--TEXT-LIGHT);
     background-color: #353131;
+    /* background-color: var(--TEXT-DARK); */
     border: none;
     width: 1.5rem;
     height: 1.4rem;
@@ -49,6 +58,10 @@
 
 #plain-text__to-pay {
     align-self: center;
+}
+
+.item-name {
+    flex-grow: 1;
 }
 
 .item-price {

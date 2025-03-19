@@ -4,6 +4,7 @@
   --BACKDROP-COLOUR: #caebcb;
   --TEXT-LIGHT: #f4f3f1;
   --DROP-SHADOW: 0 0 16px;
+  --TEXT-DARK: #353131;
 }
 
 body {
@@ -69,7 +70,7 @@ body {
 .menu__btn {
   font-family: "Fira Sans", sans-serif;
   color: var(--TEXT-LIGHT);
-  background-color: #353131;
+  background-color: var(--TEXT-DARK);
   border: none;
   width: 2rem;
   height: 1.4rem;
@@ -97,7 +98,7 @@ body {
 .menu__addonBtn {
   font-family: "Fira Sans", sans-serif;
   color: var(--TEXT-LIGHT);
-  background-color: #353131;
+  background-color: var(--TEXT-DARK);
   border: none;
   margin: 0.5rem;
   padding: 0.3rem;
@@ -108,5 +109,102 @@ body {
 
 .selected {
   background-color: var(--BACKDROP-COLOUR);
-  color: #353131;
+  color: var(--TEXT-DARK);
+}
+
+.menu__modualContainer {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.menu__modualContainer.active {
+  display: block;
+  opacity: 1;
+}
+
+.modal-content {
+  font-family: "Fira Sans", sans-serif;
+  position: relative;
+  padding: 1rem;
+  background-color: var(--BG-DARK);
+  margin: 10% auto;
+  border-radius: 8px;
+  width: 80%;
+  min-height: 90%;
+  max-width: 90%;
+  z-index: 10;
+}
+
+.modalItem-detail {
+  width: 100%;
+  height: auto;
+  color: var(--TEXT-LIGHT);
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalItem-name {
+padding-top: 1rem;
+padding-bottom: 0.2rem;
+text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.modalItem-price{
+/* padding-top: 1rem; */
+text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.modalItem-ingredients{
+  text-align: center;
+  width: 100%;
+  height: auto;
+  padding-bottom: 1rem;
+}
+
+.modalItem-desc{
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.close-button {
+  color: var(--TEXT-LIGHT);
+  font-size: 30px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.modalItem-figurImg {
+  width: 17rem;
+  height: 17rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.modalItem-img{
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.menuText:hover {
+  cursor: pointer;
+  color: var(--BACKDROP-COLOUR);
 }

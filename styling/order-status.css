@@ -8,6 +8,7 @@
 }
 
 body {
+  background-image: none;
   background-color: var(--BG-DARK);
   color: var(--TEXT-LIGHT);
   font-family: "Fira Sans", sans-serif;
