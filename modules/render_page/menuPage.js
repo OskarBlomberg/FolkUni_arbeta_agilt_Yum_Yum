@@ -5,6 +5,7 @@ import {
   objFromStorage,
   arrToStorage,
 } from "../storage/localStorage.js";
+import { goToCart } from "../utility.js";
 
 //ladda menyn
 export const menuItems = await getMenuItems();
@@ -51,7 +52,9 @@ async function renderMenuItem(menuItems) {
   // }
 
   updateItemCounts();
+  goToCart();
 }
+
 
 //Skapa Item object
 function createFoodItem(menuItem) {
@@ -87,8 +90,6 @@ function createFoodItem(menuItem) {
 //div som är modal
 const modalItemRef = document.querySelector("#ItemModal");
 //rubrik som man ska klicka på
-
-
 document.querySelectorAll(".menuText").forEach((item) => {
   item.addEventListener("click", (event) => {
 	openModal(event)
@@ -210,6 +211,7 @@ function addToCart(item) {
     orders.current[item.id].quantity++;
   }
   objToStorage(orders.current, "currentOrder");
+  updateCartBtn();
   console.log(orders.current);
 }
 
@@ -222,6 +224,7 @@ function removeFromCart(item) {
       delete orders.current[item.id];
     }
     objToStorage(orders.current, "currentOrder");
+	updateCartBtn();
     console.log(orders.current);
   }
 }
@@ -252,6 +255,7 @@ window.addEventListener("load", () => {
   const saveOrder = objFromStorage("currentOrder");
   orders.current = saveOrder;
   updateItemCounts();
+  updateCartBtn();
 
   for (let key in orders.current) {
     let item = orders.current[key];
@@ -275,6 +279,20 @@ export function updateItemCounts() {
     countElement.textContent = itemCount;
   });
 }
+
+function updateCartBtn() {
+	const toCartBtnRef = document.querySelector('.menu__footer-btn');
+	const footerRef = document.querySelector('.menu__footer');
+
+	if(Object.keys(orders.current).length === 0) {
+		toCartBtnRef.disabled = true;
+		footerRef.classList.add('d-none');
+	} else {
+		toCartBtnRef.disabled = false;
+		footerRef.classList.remove('d-none');
+	}
+}
+
 
 // function toggleItemInLocalStorage(item, button) {
 //   if (orders.current[item.id]) {
