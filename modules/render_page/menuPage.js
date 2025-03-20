@@ -341,15 +341,18 @@ export function updateCartIcon() {
 
 	const cartElement = document.querySelector(".cart");
 	const countElement = document.querySelector(".cart_count");
+  const cartLink = document.querySelector(".cart-link");
 
 	// console.log("Item Count:", itemCount); //Sjekker antallet i handlekurv
 	countElement.textContent = itemCount; // Oppdaterer antallet som vises
 
 	//Gjør at handlekurven skjules om den er tom og vises om ligger noe i den
 	if (itemCount === 0) {
-		cartElement.style.display = "none";
+		//cartElement.style.display = "none";
+    cartLink.style.display = "none";
 	} else {
-		cartElement.style.display = "flex";
+		//cartElement.style.display = "flex";
+    cartLink.style.display = "block";
 		countElement.style.display = "flex";
 	}
 }
