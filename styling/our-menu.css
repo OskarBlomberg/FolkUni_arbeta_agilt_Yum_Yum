@@ -2,7 +2,6 @@
   --HIGHLIGHT: #df4a4a;
   --BG-DARK: #206b52;
   --BACKDROP-COLOUR: #caebcb;
-  --BG-DARK-TRANSP: #206b52f5;
   --TEXT-LIGHT: #f4f3f1;
   --DROP-SHADOW: 0 0 16px;
   --TEXT-DARK: #353131;
@@ -144,31 +143,6 @@ body {
 .selected {
   background-color: var(--BACKDROP-COLOUR);
   color: var(--TEXT-DARK);
-}
-
-.menu__footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: var(--BG-DARK-TRANSP);
-  padding: 0.5rem;
-  text-align: center;
-  z-index: 1;
-  box-shadow: 0 0 16px grey;
-}
-
-.menu__footer-btn {
-  width: 16rem;
-  height: 2.5rem;
-  background-color: var(--TEXT-DARK);
-  color: var(--TEXT-LIGHT);
-  border: 1px solid var(--TEXT-LIGHT);
-  border-radius: 6px;
-  font-family: "Fira Sans", sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
-  box-shadow: 1px 1px 1px 1px #00000040;
 }
 
 .menu__modualContainer {
