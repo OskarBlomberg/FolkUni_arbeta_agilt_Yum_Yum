@@ -5,7 +5,6 @@ import { arrFromStorage, arrToStorage } from "../storage/localStorage.js";
 orders.toRestaurant = arrFromStorage("toRestaurant");
 
 export let currentOrder = orders.toRestaurant[0];
-console.log(currentOrder);
 
 export function getQueue() {
   orders.toRestaurant = arrFromStorage("toRestaurant");
@@ -22,11 +21,12 @@ export function renderCurrentOrder(current) {
   let orderTotalPrice = [];
   currentOrderEl.innerHTML = "";
 
-  for (const item of current.items) {
-    orderTotalPrice.push(item.totalPrice);
-    currentOrderEl.insertAdjacentHTML(
-      "beforeend",
-      `
+  if (current) {
+    for (const item of current.items) {
+      orderTotalPrice.push(item.totalPrice);
+      currentOrderEl.insertAdjacentHTML(
+        "beforeend",
+        `
       <section class="current-order__sub-item">
         <label class="current-order__check-name">
           <input
@@ -41,14 +41,28 @@ export function renderCurrentOrder(current) {
         </ul>
       </section>
       `
-    );
-  }
-  currentOrderEl.insertAdjacentHTML(
-    "beforeend",
-    `
+      );
+    }
+
+    currentOrderEl.insertAdjacentHTML(
+      "beforeend",
+      `
     <p class="current-order__price">${currentOrder.totalPrice} :-</p>
           <button class="button current-order__done-btn" id="done-btn">Avsluta</button>
     `
-  );
-  adminEventListeners();
+    );
+    adminEventListeners();
+  }
+  renderFollowingOrders();
+}
+
+function renderFollowingOrders() {
+  let followingQueue = document.getElementById("admin-following-queue");
+  followingQueue.innerHTML = "";
+  for (let i = 1; i < orders.toRestaurant.length; i++) {
+    const li = document.createElement("li");
+    li.textContent = `${orders.toRestaurant[i].orderID} - cirka: ${orders.toRestaurant[i].cookingTime} min`;
+
+    followingQueue.append(li);
+  }
 }
