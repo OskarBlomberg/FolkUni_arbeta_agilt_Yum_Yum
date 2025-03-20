@@ -15,3 +15,10 @@ export function goToMenu() {
     window.location.href = "/pages/our-menu.html";
   });
 }
+
+export function goToCart() {
+  const gotoCartBtnRef = document.querySelector('.menu__footer-btn');
+  gotoCartBtnRef.addEventListener('click', () => {
+    window.location.href = "/pages/cart.html"
+  })
+}

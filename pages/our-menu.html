@@ -68,6 +68,13 @@
     <main>
       <div id="menu__content">
         <div class="menu__container">
+          <div class="menu__filter">
+            <p class="menu__filterTitle">Välj typ: </p>
+              <button class="menu__filterBtn" data-type="all">Alla</button>
+              <button class="menu__filterBtn" data-type="wonton">Wonton</button>
+              <button class="menu__filterBtn" data-type="drink">Dricka</button>
+              <button class="menu__filterBtn" data-type="dip">Dip</button>
+          </div>
           <h1 class="menu__title">MENY</h1>
           <section class="menuItems-container" id="menuItemsContainer">
             <p class="menu__rubriktext" id="menu__wonton">WONTON</p>
@@ -90,6 +97,9 @@
       </div>
     </div>
   </main>
+  <footer class="menu__footer">
+    <button class="menu__footer-btn disabled">Till Kassan!</button>
+  </footer>
   <div id="ItemModal" class="menu__modualContainer"></div>
 </body>
 
