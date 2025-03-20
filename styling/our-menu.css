@@ -2,6 +2,7 @@
   --HIGHLIGHT: #df4a4a;
   --BG-DARK: #206b52;
   --BACKDROP-COLOUR: #caebcb;
+  --BG-DARK-TRANSP: #206b52f5;
   --TEXT-LIGHT: #f4f3f1;
   --DROP-SHADOW: 0 0 16px;
   --TEXT-DARK: #353131;
@@ -52,7 +53,6 @@ body {
   text-shadow: var(--TEXT-SHADOW);
   font-weight: 500;
   padding: 1.5rem 0.5rem;
-
 }
 
 .menu__Item {
@@ -65,7 +65,7 @@ body {
 
 .menu__rubriktext {
   font-family: "Fira Sans", sans-serif;
-  color: rgb(244, 245, 199);
+  color:  rgb(244, 246, 145);
   text-shadow: var(--TEXT-SHADOW);
   font-size: 1.5rem;
   font-weight: 600;
@@ -145,15 +145,44 @@ body {
   color: var(--TEXT-DARK);
 }
 
+.menu__footer {
+  background-color: var(--BG-DARK-TRANSP);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: auto;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.menu__footer-btn{
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  background-color: var(--TEXT-DARK);
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.4);
+  color: var(--TEXT-LIGHT);
+  border: 1px solid var(--TEXT-LIGHT);
+  width: 15rem;
+  height: 3rem;
+  border-radius: 6px;
+}
+
 .menu__modualContainer {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   background-color: rgba(0, 0, 0, 0.7);
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
@@ -189,24 +218,23 @@ body {
 }
 
 .modalItem-name {
-padding-top: 1rem;
-padding-bottom: 0.2rem;
-text-shadow: var(--TEXT-SHADOW)
+  padding-top: 1rem;
+  padding-bottom: 0.2rem;
+  text-shadow: var(--TEXT-SHADOW)
 }
 
-.modalItem-price{
-/* padding-top: 1rem; */
-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+.modalItem-price {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 }
 
-.modalItem-ingredients{
+.modalItem-ingredients {
   text-align: center;
   width: 100%;
   height: auto;
   padding-bottom: 1rem;
 }
 
-.modalItem-desc{
+.modalItem-desc {
   text-align: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -229,7 +257,7 @@ text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
 
-.modalItem-img{
+.modalItem-img {
   border-radius: 6px;
   width: 100%;
   height: 100%;

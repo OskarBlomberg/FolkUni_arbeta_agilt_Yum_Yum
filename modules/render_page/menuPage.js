@@ -5,7 +5,7 @@ import {
 	objFromStorage,
 	arrToStorage,
 } from "../storage/localStorage.js";
-
+import { goToCart } from "../utility.js";
 //ladda menyn
 export const menuItems = await getMenuItems();
 if (window.location.pathname === "/pages/our-menu.html") {
@@ -17,7 +17,6 @@ export async function getMenuItems() {
 	let response = await fetchMenuItems();
 	// för att komma åt arrayen så används nyckeln items
 	let itemsArray = response.items;
-	console.log(itemsArray);
 
 	return itemsArray;
 }
@@ -52,6 +51,7 @@ async function renderMenuItem(menuItems) {
 		})
 	})
 	updateItemCounts();
+	goToCart()
 }
 
 function filterItems(type) {
@@ -87,9 +87,7 @@ function filterItems(type) {
 			} else if (type === "dip") {
 				wontonRef.classList.add('d-none')
 				drinkRef.classList.add('d-none')
-			} else {
-
-			}
+			} 
 		}
 	})
 }
@@ -160,7 +158,7 @@ function openModal(event) {
 
 	closeBtn.addEventListener('keydown', (event) => {
 		if (event.key === 'Enter') {
-			modalItemRef.classList.remove("active"); // Stäng modalen
+			modalItemRef.classList.remove("active");
 		}
 	});
 
@@ -249,7 +247,7 @@ function addToCart(item) {
 		orders.current[item.id].quantity++;
 	}
 	objToStorage(orders.current, "currentOrder");
-	console.log(orders.current);
+	updateCartBtn();
 }
 
 //ta bort från localstorage
@@ -261,7 +259,7 @@ function removeFromCart(item) {
 			delete orders.current[item.id];
 		}
 		objToStorage(orders.current, "currentOrder");
-		console.log(orders.current);
+		updateCartBtn();
 	}
 }
 
@@ -274,6 +272,7 @@ function removeItem(itemRef, menuItem) {
 		updateItemCounts();
 		updateCartIcon();
 	});
+
 }
 
 //adderar 1 när man trycker på plusknappen
@@ -285,12 +284,14 @@ function addItem(itemRef, menuItem) {
 		updateItemCounts(); // Uppdatera alla count-element på sidan
 		updateCartIcon();
 	});
+
 }
 
 window.addEventListener("load", () => {
 	const saveOrder = objFromStorage("currentOrder");
 	orders.current = saveOrder;
 	updateItemCounts();
+	updateCartBtn();
 
 	for (let key in orders.current) {
 		let item = orders.current[key];
@@ -315,15 +316,39 @@ export function updateItemCounts() {
 	});
 }
 
-// function toggleItemInLocalStorage(item, button) {
-//   if (orders.current[item.id]) {
-// button.classList.remove("selected");
-//     removeFromCart(item);
-//   } else {
-//     button.classList.add("selected");
-//     addToCart(item);
-//   }
-// }
+function updateCartBtn() {
+	const toCartBtnRef = document.querySelector(".menu__footer-btn");
+	console.log(toCartBtnRef);
+	
+	const footerRef = document.querySelector(".menu__footer");
+	if (!footerRef) {
+		console.log("footerRef hittades inte!");
+	}
+	
+  
+	if (Object.keys(orders.current).length === 0) {
+	  console.log("orders.current:", orders.current);
+	  toCartBtnRef.disabled = true;
+	  toCartBtnRef.style.display = "none";
+	  footerRef.style.display = "none"; 
+	  console.log('bort med knappen');
+	} else {
+	  toCartBtnRef.disabled = false;
+	  console.log('hej med knappen');
+	  toCartBtnRef.style.display = "block"; 
+	  footerRef.style.display = "flex";
+	}
+  }
+
+function toggleItemInLocalStorage(item, button) {
+  if (orders.current[item.id]) {
+button.classList.remove("selected");
+    removeFromCart(item);
+  } else {
+    button.classList.add("selected");
+    addToCart(item);
+  }
+}
 
 export function updateCartIcon() {
 	//henter den lagrede ordren fra localstorage
