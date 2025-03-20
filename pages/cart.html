@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="../styling/cart.css" />
     <link rel="stylesheet" href="../styling/base_styling.css" />
     <link rel="stylesheet" href="../styling/nav-bar.css" />
-    <link rel="stylesheet" href="../styling/cart.css">
+    <link rel="stylesheet" href="../styling/cart.css" />
     <script type="module" src="../main.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <script type="module" src="../modules/render_page/navBar.js"></script>
     <script type="module" src="../modules/cartPlaceholder.js"></script>
   </head>
@@ -32,13 +35,22 @@
 
       <div class="nav-icons">
         <a href="../pages/cart.html" class="cart-link">
-          <div id="cart-btn" class="cart" tabindex="0" aria-label="Öppna varukorg">
+          <div
+            id="cart-btn"
+            class="cart"
+            tabindex="0"
+            aria-label="Öppna varukorg"
+          >
             <span class="cart_count">0</span>
             <i class="fa-solid fa-cart-shopping"></i>
           </div>
         </a>
 
-        <div class="hamburger-menu" tabindex="0" aria-label="Öppna navigationsmeny">
+        <div
+          class="hamburger-menu"
+          tabindex="0"
+          aria-label="Öppna navigationsmeny"
+        >
           <figure class="icon-container">
             <img
               src="../styling/images/Menu_48x48.png"
@@ -60,7 +72,12 @@
         <article class="placeholder__item-element"></article>
         <article class="placeholder__sum-element"></article>
       </section>
-      <button class="pay-btn">take my money</button>
+      <div class="cart-btn-container">
+        <a href="./our-menu.html" class="cart-btn-container__btn"
+          >Tillbaka till menyn</a
+        >
+        <button class="cart-btn-container__btn pay-btn">Bekräfta order</button>
+      </div>
     </main>
   </body>
 </html>
