@@ -72,7 +72,7 @@ function populateCart() {
 
     const itemPrice = document.createElement("span");
     itemPrice.classList.add("item-price");
-    itemPrice.textContent = `${(item.price * item.quantity).toFixed(2)} kr`;
+    itemPrice.textContent = `${(item.price * item.quantity).toFixed(2)}kr`;
 
     // Quantity controls (plus/minus buttons)
     const quantityControls = document.createElement("div");
