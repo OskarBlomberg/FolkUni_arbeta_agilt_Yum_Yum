@@ -1,15 +1,17 @@
-import { imageCarousel } from "./modules/imageCarousel.js"; 
-import { renderEta } from "./modules/render_page/orderStatus.js";
+import { imageCarousel } from "./modules/imageCarousel.js";
+import renderOrderStatus, {
+  startEtaInterval,
+} from "./modules/render_page/orderStatus.js";
 import { renderNav } from "./modules/render_page/navBar.js";
-import { updateCartIcon, updateItemCounts } from "./modules/render_page/menuPage.js";
+import {
+  updateCartIcon,
+  updateItemCounts,
+} from "./modules/render_page/menuPage.js";
 import {
   currentOrder,
   renderCurrentOrder,
 } from "./modules/render_page/admin.js";
-import { 
-  goToFindUs,
-  goToMenu 
-} from "./modules/utility.js";
+import { goToFindUs, goToMenu } from "./modules/utility.js";
 
 if (
   window.location.pathname === "/" ||
@@ -36,7 +38,8 @@ if (
 } else if (window.location.pathname === "/pages/order-status.html") {
   // Orderstatus
   console.log("order status");
-  renderEta();
+  renderOrderStatus();
+  startEtaInterval();
 } else if (window.location.pathname === "/pages/our-menu.html") {
   // Vår meny
   console.log("our menu");
@@ -47,4 +50,4 @@ if (
 
 renderNav(window.location.pathname);
 updateCartIcon();
-updateItemCounts(); 
+updateItemCounts();

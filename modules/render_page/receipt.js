@@ -1,6 +1,7 @@
 import { arrFromStorage } from "../storage/localStorage.js";
 
 function createReceipt() {
+
   const placedOrder = arrFromStorage("placedOrder");
   console.log(placedOrder);
 
@@ -9,6 +10,7 @@ function createReceipt() {
     console.error("Ingen order att hämta");
     return;
   }
+
 
 // Set parent element
   const receiptContainer = document.getElementById('receipt-container');

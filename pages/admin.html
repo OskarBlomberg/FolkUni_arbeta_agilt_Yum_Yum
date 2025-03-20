@@ -11,12 +11,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
     <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <link rel="stylesheet" href="../styling/base_styling.css" />
     <link rel="stylesheet" href="../styling/admin.css" />
@@ -25,7 +29,7 @@
   </head>
   <body>
     <header class="header">
-      <a href="/">
+      <a href="/" title="Gå till startsidan">
         <figure class="icon-container">
           <img
             src="../styling/images/Logo_128x128.png"
@@ -36,9 +40,24 @@
           /></figure
       ></a>
 
-      <div class="cart d-none" tabindex="0"></div>
+      <div class="nav-icons">
+        <a href="/pages/cart.html" class="cart-link">
+          <div
+            id="cart-btn"
+            class="cart"
+            tabindex="0"
+            aria-label="Öppna varukorg"
+          >
+            <span class="cart_count">0</span>
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+        </a>
 
-        <div class="hamburger-menu" tabindex="0">
+        <div
+          class="hamburger-menu"
+          tabindex="0"
+          aria-label="Öppna navigationsmeny"
+        >
           <figure class="icon-container">
             <img
               src="../styling/images/Menu_48x48.png"
@@ -59,32 +78,9 @@
       <section class="admin__queue">
         <h1 class="admin__heading admin__heading--h1">Beställningar</h1>
 
-        <article class="current-order" id="current-order">
-          <section class="current-order__sub-item">
-            <label class="current-order__check-name">
-              <input
-                class="current-order__checkbox"
-                type="checkbox"
-                name="item-ready"
-              />
-              <h2 class="admin__heading admin__heading--h2">Rätt</h2>
-            </label>
-            <p class="current-order__amount">3</p>
-            <ul class="current-order__ingredients">
-              <li class="current-order__ingredient">Halm</li>
-              <li class="current-order__ingredient">Sork</li>
-              <li class="current-order__ingredient">Ost</li>
-            </ul>
-          </section>
-          <p class="current-order__price">1 billion dollars</p>
-          <button class="button current-order__done-btn">Avsluta</button>
-        </article>
+        <article class="current-order" id="current-order"></article>
 
-        <ul class="admin__queue__following">
-          <li>order2</li>
-          <li>order3</li>
-          <li>order4</li>
-        </ul>
+        <ul class="admin__queue__following" id="admin-following-queue"></ul>
       </section>
     </main>
   </body>

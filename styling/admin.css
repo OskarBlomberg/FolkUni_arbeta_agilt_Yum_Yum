@@ -9,6 +9,7 @@
 }
 
 body {
+  background-image: none;
   background-color: var(--BG-DARK);
   color: var(--GREY-DARK);
   font-family: "Fira Sans", sans-serif;
@@ -49,6 +50,8 @@ body {
   width: 100%;
   padding: 1rem 0;
   background-color: var(--TEXT-LIGHT);
+  border-radius: 5px;
+  box-shadow: -2px 3px 4px black;
   display: flex;
   flex-direction: column;
   align-items: center;
