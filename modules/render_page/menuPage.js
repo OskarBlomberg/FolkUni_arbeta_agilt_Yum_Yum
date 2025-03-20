@@ -50,6 +50,8 @@ async function renderMenuItem(menuItems) {
 
 		})
 	})
+
+	loadandUpdatefromLocalStorage();
 	updateItemCounts();
 	goToCart()
 }
@@ -287,20 +289,22 @@ function addItem(itemRef, menuItem) {
 
 }
 
-window.addEventListener("load", () => {
-	const saveOrder = objFromStorage("currentOrder");
-	orders.current = saveOrder;
-	updateItemCounts();
-	updateCartBtn();
-
-	for (let key in orders.current) {
-		let item = orders.current[key];
-		let button = document.querySelector(`button[data-id='${item.id}']`);
-		if (button) {
-			button.classList.add("selected");
+function loadandUpdatefromLocalStorage() {
+	window.addEventListener("load", () => {
+		const saveOrder = objFromStorage("currentOrder");
+		orders.current = saveOrder;
+		updateItemCounts();
+		updateCartBtn();
+	
+		for (let key in orders.current) {
+			let item = orders.current[key];
+			let button = document.querySelector(`button[data-id='${item.id}']`);
+			if (button) {
+				button.classList.add("selected");
+			}
 		}
-	}
-});
+	});
+}
 
 export function updateItemCounts() {
 	orders.current = objFromStorage("currentOrder");
