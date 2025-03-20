@@ -15,3 +15,11 @@ export function goToMenu() {
     window.location.href = "/pages/our-menu.html";
   });
 }
+
+
+export function goToCart() {
+  const cartRef = document.querySelector('.menu__footer-btn');
+  cartRef.addEventListener('click', () => {
+    window.location.href = "/pages/cart.html"
+  })
+}
