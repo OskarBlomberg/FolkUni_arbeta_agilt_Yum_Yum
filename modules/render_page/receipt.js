@@ -1,9 +1,7 @@
 import { arrFromStorage } from "../storage/localStorage.js";
 
-// const receipt = localStorage.getItem("placedOrder")
-// console.log(receipt);
+function createReceipt() {
 
-export function createReceiptOverlay() {
   const placedOrder = arrFromStorage("placedOrder");
   console.log(placedOrder);
 
@@ -13,52 +11,74 @@ export function createReceiptOverlay() {
     return;
   }
 
-  // Create the container for the overlay
-  const receiptOverlay = document.createElement("article");
-  receiptOverlay.id = "receipt-overlay";
-  // Self-explanatory
-  const receiptContent = document.createElement("div");
-  // Header for overlay
-  const receiptHead = document.createElement("h1");
-  receiptHead.innerText = "Kvitto";
-  receiptContent.appendChild(receiptHead);
-  // Fetch order number from placedOrder
-  const receiptOrderNumber = document.createElement("p");
-  receiptOrderNumber.innerText = `Ordernummer: ${placedOrder.orderID}`;
-  receiptContent.appendChild(receiptOrderNumber);
-  // Fetch item names from placedOrder
-  const receiptItems = document.createElement("li");
-  placedOrder.items.forEach((item) => {
-    const listItem = document.createElement("li");
-    listItem.innerText = `${item.name} - ${item.price.toFixed(2)}kr`;
-    receiptItems.appendChild(listItem);
-  });
-  receiptContent.appendChild(receiptItems);
 
-  // Add totals
-  const receiptTotal = document.createElement("p");
+// Set parent element
+  const receiptContainer = document.getElementById('receipt-container');
+  const rcWrapper = document.createElement('div');
+  rcWrapper.classList.add('receipt-wrapper');
+  receiptContainer.appendChild(rcWrapper);
 
-  receiptTotal.innerText = `Betalat: ${placedOrder.totalPrice} kr`;
-  receiptContent.appendChild(receiptTotal);
+// Fetch order number  
+  const rcOrderNumber = document.createElement('h3');
+  rcOrderNumber.innerText = `Ordernummer: ${placedOrder.orderID}`;
+  rcWrapper.appendChild(rcOrderNumber);
 
-  // Close overlay button
-  const closeOverlay = document.createElement("button");
-  closeOverlay.innerText = "Återgå till ordern";
-  closeOverlay.onclick = removeOverlay;
-  receiptContent.appendChild(closeOverlay);
+// Make separate container for ordered items for styling purposes
+  const rcItemContainer = document.createElement('div');
+  rcItemContainer.classList.add('rc__item-container');
+  // rcItemContainer.innerText = 'Namn' + 'Antal' + 'Pris';
+  rcWrapper.appendChild(rcItemContainer);
+  const rcItemHeaderName = document.createElement('p');
+  rcItemHeaderName.innerText ='Namn:';
+  const rcItemHeaderQnt = document.createElement('p');
+  rcItemHeaderQnt.innerText ='Antal:';
+  const rcItemHeaderPrice = document.createElement('p');
+  rcItemHeaderPrice.innerText ='Pris:';
+  rcItemContainer.appendChild(rcItemHeaderName);
+  rcItemContainer.appendChild(rcItemHeaderQnt);
+  rcItemContainer.appendChild(rcItemHeaderPrice);
 
-  // Append receipt content
-  receiptOverlay.appendChild(receiptContent);
+// Fetch items, quantities and price and put these into rcItemContainer
 
-  // Append overlay to body
-  document.body.appendChild(receiptOverlay);
+  const rcContainer = document.createElement('section');
+  rcContainer.classList.add('rc__container');
+  rcWrapper.appendChild(rcContainer);
+  const rcItemWrapper = document.createElement('div');
+  rcItemWrapper.classList.add('rc__item-name');
+  rcContainer.appendChild(rcItemWrapper);
+  placedOrder.items.forEach(item => {
+    const rcItemName = document.createElement('li');
+    rcItemName.innerText = `${item.name}`;
+    rcItemWrapper.appendChild(rcItemName);
+  }); 
+    // for quantitiy
+  const rcQntWrapper = document.createElement('div');
+  rcQntWrapper.classList.add('rc__item-qnt');
+  rcContainer.appendChild(rcQntWrapper);
+    placedOrder.items.forEach(item => {
+      const rcItemQnt = document.createElement('li');
+      rcItemQnt.innerText = `x${item.quantity}`;
+      rcQntWrapper.appendChild(rcItemQnt);
+    });
+    // for price
+    const rcPriceWrapper = document.createElement('div');
+    rcPriceWrapper.classList.add('rc__item-price');
+    rcContainer.appendChild(rcPriceWrapper);
+      placedOrder.items.forEach(item => {
+        const rcItemPrice = document.createElement('li');
+        rcItemPrice.innerText = `${item.totalPrice}kr`;
+        rcPriceWrapper.appendChild(rcItemPrice);
+  });  
+
+  const rcFooter = document.createElement('div');
+  rcFooter.classList.add('rc__footer');
+  receiptContainer.appendChild(rcFooter);
+  const rcTotalPrice = document.createElement('h3');
+  rcTotalPrice.classList.add('rc__sum-total');
+  rcTotalPrice.innerText = `Betalat: ${placedOrder.totalPrice}kr`
+  rcFooter.appendChild(rcTotalPrice);
+
+
 }
 
-function removeOverlay() {
-  const receiptOverlay = document.getElementById("receipt-overlay");
-  if (receiptOverlay) {
-    receiptOverlay.remove();
-  }
-}
-
-// createReceiptOverlay();
+createReceipt();

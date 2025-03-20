@@ -1,0 +1,111 @@
+* {
+    --HIGHLIGHT: #df4a4a;
+    --BG-DARK: #206b52;
+    --BACKDROP-COLOUR: #caebcb;
+    --TEXT-LIGHT: #f4f3f1;
+    --DROP-SHADOW: 0 0 16px;
+    --TEXT-DARK: #353131;
+  }
+
+.receipt-container {
+    display: flex;
+    flex-direction: column;
+    place-self: center;
+    margin-top: 5rem;
+    min-height: 85%;
+    width: 95%;
+    background-color: var(--TEXT-LIGHT);
+    z-index: 1;
+    border: 2px dashed #35313133;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.receipt-blurb {
+    text-align: center;
+}
+
+.rc__item-container {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.rc__container {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+
+}
+
+.rc__item-name {
+    width: 100%;
+    list-style: none;
+    overflow: hidden;
+}
+
+.rc__item-qnt {
+    display: flex;
+    flex-direction: column;
+    /* align-self: end; */
+    /* place-self: center; */
+    list-style: none;
+    width: 33%;
+    /* align-items: center; */
+}
+
+.rc__item-price {
+    place-self: center;
+    list-style: none;
+    width: 33%;
+}
+
+.rc__footer {
+    place-self: end;
+    margin-top: 0.7rem;
+}
+
+#receipt-content {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    list-style: none;
+    width: auto;
+    height: auto;
+}
+
+#receipt-content, h1 {
+    align-self: center;
+    padding-bottom: 1rem;
+}
+
+#receipt-content, h2, h3 {
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.receipt-items-container {
+    display: flex;
+}
+
+.receipt-items {
+    display: flex;
+    align-content: space-between;
+}
+
+.close-overlay-btn {
+    color: var(--TEXT-LIGHT);
+    background-color: var(--GREY-DARK);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    padding: 1rem 1rem;
+    border: 1px solid #d1ccca;
+    border-radius: 7px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
