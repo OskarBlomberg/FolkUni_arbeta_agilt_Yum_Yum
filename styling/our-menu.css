@@ -27,12 +27,32 @@ body {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.menu__title {
-  font-family: "Fira Sans", sans-serif;
+.menu__filterTitle {
   color: var(--TEXT-LIGHT);
   text-shadow: var(--TEXT-SHADOW);
+  font-family: "Fira Sans", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0.5rem;
+}
+
+.menu__filterBtn {
+  font-family: "Fira Sans", sans-serif;
+  color: var(--TEXT-LIGHT);
+  background-color: var(--TEXT-DARK);
+  border: none;
+  width: 4rem;
+  height: 1.8rem;
+  border-radius: 6px;
+}
+
+.menu__title {
+  font-family: "Fira Sans", sans-serif;
+  color: rgb(244, 246, 145);
+  text-shadow: var(--TEXT-SHADOW);
   font-weight: 500;
-  padding: 1rem;
+  padding: 1.5rem 0.5rem;
+
 }
 
 .menu__Item {
@@ -45,7 +65,7 @@ body {
 
 .menu__rubriktext {
   font-family: "Fira Sans", sans-serif;
-  color: var(--TEXT-LIGHT);
+  color: rgb(244, 245, 199);
   text-shadow: var(--TEXT-SHADOW);
   font-size: 1.5rem;
   font-weight: 600;
