@@ -1,0 +1,35 @@
+Mötesprotokoll Sprint Review 21-03-2025
+
+Närvarande
+Oskar Blomberg
+Adam Ekholt
+Christian Larsen
+Lisa Lillhannus
+
+Protokoll
+Sammanfatta vad ni presenterat, vilka kommentarer PO hade osv.
+
+##Presentation
+För vår prestentation så visade prof of concept sidan med implementeringar från POs önskemål ifrån förra sprinten. 
+Visade hur produkten såg ut vid tillfället, hur vi hade fixat varuflödet. Visade den updaterade stylingen vi hade gjort. 
+Vi förklarade hur vi gjort orderhanteringen lagringen och hur ordernummrena hanterades och genereras och vad för fördelar 
+det kan ha på framtida skalbarhet. 
+Vi visade att vi skapat en admin, som man kommer kunna logga in på när inloggnings funktionen har kommit på plats
+Hur adminsidan kan bidra till att få en överblick över hur artbetsbelastningen kommer bli under dagen. 
+Visade även de implementerade filtreringsfunktionerna. 
+
+Vi missade att lyfta fram all tillgänglighets anpassning som adam har gjort, aria-lables, kontrasttest,
+hemsidan går att navigera med tangentbord och även med skärmläsare. 
+
+### Framtida implementeringar
+Framtida implementeringar som vi tog upp kunde göras. 
+Skapa en Inloggs funktion, där man kan spara favoritordrar, se kvittot och hitta gamla ordrar. 
+En ikon i Navbar till ETA sidan när man lagt beställning, så man slipper leta efter den om man klickar sig bort från den,
+detta fick vi fram från vårt användartest och bestämde att det var av vikt att ta fram detta.
+
+## POs kommentarer
+Kommentarer från PO var att hon tyckte de va bra design och att den upplevde till hennes förväntningar från förra mötet.
+Hon var även glad och betryggad över att vi gjort användartester och hon märkte att de påverkat beslut vi tagt och att
+vi lagt upp en plan för hur vi ska implementera saker som ännu inte är gjorta utifrån det testet. 
+
+
