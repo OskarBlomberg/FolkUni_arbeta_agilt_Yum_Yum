@@ -1,0 +1,90 @@
+* {
+    --HIGHLIGHT: #df4a4a;
+    --BG-DARK: #206b52;
+    --BACKDROP-COLOUR: #caebcb;
+    --TEXT-LIGHT: #f4f3f1;
+    --TEXT-DARK: #1F1813;
+    --TEXT-TRANSPARENCY: RGBA(244,243,241,0.90);
+
+  }
+
+body {
+    background-image: url("/styling/images/leaf-background.webp");
+    overflow: hidden;
+    background-color: var(--BACKDROP-COLOUR);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.mp__image{
+    width: 220px;
+}
+
+.mp__content-wrapper {
+    height: 100%;
+    padding: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.mp__text-box {
+    background-color: var(--TEXT-TRANSPARENCY);
+    min-height: 3rem;
+    height: 56vh;
+    max-height: 100rem;
+    margin: 0.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+.mp__text {
+    font-family: "Fira Sans", sans-serif;
+    /* text-align: center; */
+}
+
+.mp__title {
+    font-family: "Ubuntu Mono", monospace;
+    font-weight: 500;
+    font-size: 1.4rem;
+    letter-spacing: 0.3rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.mp__text-content {
+    line-height: 1.5rem;
+    padding: 1rem;
+}
+
+.mp__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+.button {
+    height: 3.8rem;
+    width: 17rem;
+    background-color: var(--HIGHLIGHT);
+    border: 1px solid #D1CCCA;
+    color: var(--TEXT-LIGHT);
+    border-radius: 7px;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.40);
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+}

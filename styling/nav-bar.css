@@ -1,0 +1,155 @@
+* {
+  --HIGHLIGHT: #df4a4a;
+  --BG-DARK: #206b52;
+  --BG-DARK-TRANSP: #206b52f5;
+  --BG-DARK-HIGHLIGHT: hsl(160, 34%, 27%);
+  --BACKDROP-COLOUR: #caebcb;
+  --TEXT-LIGHT: #f4f3f1;
+  --DROP-SHADOW: 0 0 16px;
+}
+
+.header {
+  background-color: var(--BG-DARK-TRANSP);
+  font-family: "Fira Sans", sans-serif;
+  font-size: 1.5rem;
+  height: 4rem;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 16px grey;
+  text-shadow: 1px 1px 1px RGBA(0, 0, 0, 0.4);
+}
+
+.icon-container {
+  height: 4rem;
+  padding: 0.5rem;
+}
+
+.header__img {
+  max-height: 100%;
+  width: auto;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Stylingen til cart iconet i navbar */
+
+.cart {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart_count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 1.2rem;
+  height: 1.2rem;
+  background: var(--HIGHLIGHT);
+  color: var(--TEXT-LIGHT);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.fa-cart-shopping {
+  font-size: 35px;
+  color: var(--TEXT-LIGHT);
+}
+
+.cart_count:empty {
+  display: none;
+}
+
+/* HAMBURGER MENU */
+
+.hamburger-menu__nav {
+  width: 15rem;
+  background-color: 2;
+  display: none;
+  position: absolute;
+  top: 4rem;
+  right: 0;
+  border-radius: 0 0 0 10px;
+  box-shadow: -2px 2px 6px grey;
+  transform-origin: top right;
+  animation: showMenu 0.35s ease-out forwards;
+}
+
+.hamburger-menu:hover {
+  cursor: pointer;
+}
+
+:is(.hamburger-menu:hover, .hamburger-menu:focus-within) .hamburger-menu__nav {
+  display: block;
+}
+
+.hamburger-menu__nav__list {
+  background-color: var(--BG-DARK-TRANSP);
+  list-style: none;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.hamburger-menu__item {
+  width: 100%;
+  border: solid var(--TEXT-LIGHT);
+  border-width: 1px 1px 0 1px;
+  display: grid;
+  align-content: center;
+}
+
+.hamburger-menu__link {
+  text-align: center;
+  margin: auto;
+  padding: 0.5rem;
+  color: var(--TEXT-LIGHT);
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-shadow: 0 0 16px grey;
+}
+
+:is(.hamburger-menu__item:hover, .hamburger-menu__item:focus-within)
+  .hamburger-menu__link {
+  font-weight: 600;
+  background-color: var(--BG-DARK-HIGHLIGHT);
+  width: 100%;
+}
+
+.hamburger-menu__item:last-of-type,
+.hamburger-menu__link:last-of-type {
+  border-bottom-width: 1px;
+  border-radius: 0 0 0 10px;
+}
+
+/* ANIMATION */
+
+@keyframes showMenu {
+  0% {
+    transform: scale(0);
+  }
+
+  80% {
+    transform: scale(1.05, 1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

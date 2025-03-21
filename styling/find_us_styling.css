@@ -1,0 +1,74 @@
+main {
+  margin: 1rem;
+}
+
+.find-us-container {
+  height: auto;
+  min-height: 3rem;
+  max-height: 100rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #206b52;
+  border-radius: 10px;
+}
+
+.map-place-holder {
+  flex-wrap: nowrap;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 10%;
+}
+
+.h1-white {
+  color: #f4f3f1;
+  font-family: "Fira Sans", sans-serif;
+  color: var(--TEXT-LIGHT);
+  font-weight: solid 500;
+  padding: 1rem;
+  margin-top: 2vh;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.schedule {
+  width: 90%;
+  height: auto;
+  margin: 1rem;
+  padding: 0;
+  list-style-type: none;
+  font-family: "Fira Sans", sans-serif;
+}
+
+.current__location-item {
+  margin: 0.5vh;
+  padding: 1%;
+  border-radius: 4px;
+  font-size: large;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 900;
+  text-align: center;
+  align-content: center;
+  min-height: 6rem;
+}
+
+.upcoming__location-item {
+  padding: 1rem;
+  margin: 0.5vh;
+  border-radius: 4px;
+  font-size: small;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 600;
+  text-align: center;
+}
+
+.schedule :nth-child(even) {
+  background-color: #d9d9d9;
+}
+
+.schedule :nth-child(odd) {
+  background-color: #f4f3f1;
+}

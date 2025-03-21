@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Rykande nudlar och heta dim sum - Yum Yum Gimmie Sum!"
+    />
+    <title>Kvitto</title>
+    <link rel="stylesheet" href="../styling/base_styling.css" />
+    <link rel="stylesheet" href="../styling/nav-bar.css" />
+    <link rel="stylesheet" href="../styling/receipt.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script type="module" src="../main.js"></script>
+    <script type="module" src="../modules/render_page/receipt.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <a href="/" title="Gå till startsidan">
+        <figure class="icon-container">
+          <img
+            src="../styling/images/Logo_128x128.png"
+            width="128"
+            height="128"
+            class="header__img"
+            alt="Logotyp och hemknapp"
+          /></figure
+      ></a>
+
+      <div class="nav-icons">
+        <a href="../pages/cart.html" class="cart-link">
+          <div
+            id="cart-btn"
+            class="cart"
+            tabindex="0"
+            aria-label="Öppna varukorg"
+          >
+            <span class="cart_count">0</span>
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+        </a>
+
+        <div
+          class="hamburger-menu"
+          tabindex="0"
+          aria-label="Öppna navigationsmeny"
+        >
+          <figure class="icon-container">
+            <img
+              src="../styling/images/Menu_48x48.png"
+              width="48"
+              height="48"
+              class="header__img"
+              alt="Navigationsmeny"
+            />
+          </figure>
+          <nav class="hamburger-menu__nav">
+            <ul id="nav-list" class="hamburger-menu__nav__list"></ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="receipt-container" id="receipt-container">
+        <h1 class="receipt-header">Kvitto</h1>
+        <p class="receipt-blurb">
+          Yum yum gimmie sum <br />
+          wontons on wheels
+        </p>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+main {
+    margin: 1rem;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #206B52;
+    border-radius: 7px;
+    width: 100%; 
+    height: calc(90vh - 32px);
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+h2 {
+    font-family: "Fira Sans", sans-serif;
+    color: var(--TEXT-LIGHT);
+    font-weight: solid 500;
+    color: #EEEEEE;
+    text-transform: uppercase;
+    padding: 1.5rem;
+    text-shadow: 1px 3px 0px rgba(0, 0, 0, 0.30);  
+}
+
+.image-carousel {
+    display: flex;
+    position: relative; 
+    justify-content: center; 
+    align-items: center;
+    width: 100%; 
+    max-width: 800px; 
+}
+
+.image-carousel img {
+    max-width: 100%; 
+    max-height: 100%; 
+}
+
+.material-icons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem; 
+    color: #EEEEEE;
+    /*background-color: rgba(31.75, 107.31, 81.78, 0.78); */ 
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 7px;
+    text-shadow: 1px 3px 0px rgba(0, 0, 0, 0.30);  
+}
+
+#arrow_back {
+    left: 0.650rem; 
+}
+
+#arrow_forward {
+    right: 0.650rem; 
+}
+
+p {
+    font-family: "Fira Sans";
+    font-weight: 500;
+    color: #EEEEEE;
+    font-size: 0.850rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    flex-wrap: wrap;
+    line-height: 1.5;
+}
+
